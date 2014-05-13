@@ -11,6 +11,6 @@ describe "users/show.html.erb" do
 
   subject { rendered }
 
-  it { should have_content user.email }
+  it { should have_content user.username }
 
 end

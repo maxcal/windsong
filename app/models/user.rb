@@ -6,6 +6,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
+  field :username, type: String
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
@@ -34,9 +35,5 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  def serialize_from_session(key, salt)
-    record = to_adapter.get(key.to_s)
-    record if record && record.authenticatable_salt == salt
-  end
-
+  validates_uniqueness_of :username, allow_nil: true
 end

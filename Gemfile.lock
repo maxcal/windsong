@@ -208,6 +208,9 @@ GEM
       rdoc (~> 4.0, < 5.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
+    simple_form (3.0.2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     slop (3.5.0)
     spork (1.0.0rc4)
     spork-rails (4.0.0)
@@ -274,6 +277,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 2.5.0)
+  simple_form (~> 3.0.2)
   spork-rails (~> 4.0.0)
   spring
   terminal-notifier-guard (~> 1.5.3)

@@ -15,6 +15,10 @@ gem 'jquery-rails'
 # ZURB Foundation on Sass/Compass (http://foundation.zurb.com/)
 gem 'foundation-rails', '~> 5.2.2.0'
 
+# ===== Views  ===========================================================================
+# Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
+gem 'simple_form', '~> 3.0.2'
+
 # ===== API  =============================================================================
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

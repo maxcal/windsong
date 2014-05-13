@@ -6,6 +6,7 @@ feature 'Authentication' do
 
     background do
       visit '/users/sign_up'
+      fill_in 'Username', with: 'joe.bloggs'
       fill_in 'Email', with: 'foo@example.com'
       fill_in 'Password', with: 'Pazzwurd'
       fill_in 'Password confirmation', with: 'Pazzwurd'
@@ -40,11 +41,13 @@ feature 'Authentication' do
         click_button 'Sign up'
       }.to change(User, :count).by(+1)
       expect(page).to have_content "Welcome! You have signed up successfully."
+      user = User.last
+      expect(user.email).to eq 'foo@example.com'
+      expect(user.username).to eq 'joe.bloggs'
     end
   end
 
   context 'when I sign in' do
-
     let!(:user) { create(:user) }
     background do
       visit '/users/sign_in'
