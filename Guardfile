@@ -15,7 +15,7 @@ guard :spork, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch(%r{features/support/}) { :cucumber }
 end
 
-guard :rspec do
+guard :rspec, all_on_pass: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
