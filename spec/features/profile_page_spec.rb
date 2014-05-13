@@ -9,16 +9,4 @@ feature 'Profile page' do
     expect(page).to have_link 'Edit'
   end
 
-  scenario 'I edit my profile' do
-    visit edit_user_registration_path
-    fill_in 'Email', with: 'foo@bar.com'
-    fill_in 'Username', with: 'foobarbaz'
-    fill_in 'Current password', with: user.password
-    click_button 'Update'
-    expect(page).to have_content 'You updated your account successfully'
-    actual = User.last
-    expect(actual.username).to eq 'foobarbaz'
-    expect(actual.email).to eq 'foo@bar.com'
-  end
-
 end
