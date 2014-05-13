@@ -78,7 +78,6 @@ feature 'Authentication' do
       fill_in 'Current password', with: user.password
     end
 
-
     scenario 'I should be able to change my username' do
       fill_in 'Username', with: 'foobarbaz'
       click_button 'Update'
@@ -98,7 +97,14 @@ feature 'Authentication' do
       expect(page).to have_content 'You updated your account successfully'
       expect(mail.subject).to eq "Confirmation instructions"
     end
+  end
 
+  context "When I sign out" do
+    scenario "I should receive confirmation" do
+      create_user_and_sign_in
+      click_link 'Sign out'
+      expect(page).to have_content 'Signed out successfully'
+    end
   end
 
 end
