@@ -1,16 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Windsong</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= render partial: 'application/flash', locals: { flash: flash } %>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <nav class="tab-bar">
+        <section class="left-small">
+          <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+        </section>
 
-<%= yield %>
+        <section class="middle tab-bar-section">
+          <h1 class="title">Windsong</h1>
+        </section>
 
-</body>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li><label>Foundation</label></li>
+          <li><a href="#">The Psychohistorians</a></li>
+          <li><a href="#">...</a></li>
+        </ul>
+      </aside>
+
+      <section class="main-section row">
+        <%= yield %>
+      </section>
+
+      <a class="exit-off-canvas"></a>
+
+    </div>
+  </div>
+
+
+
+  </body>
 </html>
