@@ -24,6 +24,8 @@
 
       </nav>
 
+      <%= render partial: 'application/flash', locals: { flash: flash } if flash.any? %>
+
       <aside class="left-off-canvas-menu">
         <ul class="off-canvas-list">
           <li><label>Foundation</label></li>
