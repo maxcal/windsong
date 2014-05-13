@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Slug
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,5 +37,11 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Virtual attribute for authenticating by either username or email
+  attr_accessor :login
+
   validates_uniqueness_of :username, allow_nil: true
+
+  slug :username, reserved: ['me', 'admin', 'root', 'user']
+
 end

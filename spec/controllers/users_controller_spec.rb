@@ -16,6 +16,12 @@ describe UsersController do
       expect(assigns(:user).id).to eq user.id
     end
 
+    context "when :id parameter is a username" do
+      before do
+        get 'show', id: user.slug
+      end
+      it { should be_successful }
+    end
   end
 
   describe "GET 'index'" do
