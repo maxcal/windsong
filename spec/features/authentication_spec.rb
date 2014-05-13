@@ -8,8 +8,8 @@ feature 'Authentication' do
       visit '/users/sign_up'
       fill_in 'Username', with: 'joe.bloggs'
       fill_in 'Email', with: 'foo@example.com'
-      fill_in 'Password', with: 'Pazzwurd'
-      fill_in 'Password confirmation', with: 'Pazzwurd'
+      fill_in 'Password', with: 'Pazzwurd', match: :prefer_exact
+      fill_in 'Password confirmation', with: 'Pazzwurd', match: :prefer_exact
     end
 
     scenario 'with an invalid email' do
@@ -17,23 +17,23 @@ feature 'Authentication' do
       expect {
         click_button 'Sign up'
       }.to_not change(User, :count)
-      expect(page).to have_content 'Email is invalid'
+      expect(page).to have_content 'Emailis invalid'
     end
 
     scenario 'with an invalid password' do
-      fill_in 'Password', with: 'a'
+      fill_in 'Password', with: 'a', match: :prefer_exact
       expect {
         click_button 'Sign up'
       }.to_not change(User, :count)
-      expect(page).to have_content 'Password is too short'
+      expect(page).to have_content 'Passwordis too short'
     end
 
     scenario 'with a confirmation that does not match password' do
-      fill_in 'Password confirmation', with: 'a'
+      fill_in 'Password confirmation', with: 'a', match: :prefer_exact
       expect {
         click_button 'Sign up'
       }.to_not change(User, :count)
-      expect(page).to have_content "Password confirmation doesn't match Password"
+      expect(page).to have_content "Password confirmationdoesn't match Password"
     end
 
     scenario 'with valid input' do

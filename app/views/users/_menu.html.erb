@@ -2,6 +2,7 @@
 <ul class="off-canvas-list">
   <li><label>Windsong</label></li>
   <li><%= link_to 'Profile', current_user_path %></li>
+  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 </ul>
 <% else # user is not signed in %>
 <ul class="off-canvas-list">
