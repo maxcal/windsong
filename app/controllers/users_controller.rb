@@ -10,6 +10,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  # User profile page
+  # get /users/me
+  def me
+    @user = current_user
+  end
+
   private
 
   def set_user

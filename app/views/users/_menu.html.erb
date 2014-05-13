@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 <ul class="off-canvas-list">
   <li><label>Windsong</label></li>
-  <li><%= link_to 'Profile', user_path(current_user.to_param) %></li>
+  <li><%= link_to 'Profile', current_user_path %></li>
 </ul>
 <% else # user is not signed in %>
 <ul class="off-canvas-list">

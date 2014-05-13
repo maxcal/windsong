@@ -27,11 +27,7 @@
       <%= render partial: 'application/flash', locals: { flash: flash } if flash.any? %>
 
       <aside class="left-off-canvas-menu">
-        <ul class="off-canvas-list">
-          <li><label>Foundation</label></li>
-          <li><a href="#">The Psychohistorians</a></li>
-          <li><a href="#">...</a></li>
-        </ul>
+        <%= render partial: 'users/menu' %>
       </aside>
 
       <section class="main-section row">

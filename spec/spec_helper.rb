@@ -36,6 +36,7 @@ Spork.prefork do
 
   include FactoryGirl::Syntax::Methods
 
+  include SessionHelpers
 end
 
 # The Spork.each_run block is run each time you run your specs.  In case you

@@ -6,12 +6,16 @@ describe UsersController do
   subject { response }
 
   describe "GET 'show'" do
-    before { get 'show', id: user.to_param }
+
+    before do
+      get 'show', id: user.to_param
+    end
     it { should be_successful }
     it { should render_template :show }
     it "should assign @user" do
       expect(assigns(:user).id).to eq user.id
     end
+
   end
 
   describe "GET 'index'" do
@@ -23,6 +27,19 @@ describe UsersController do
     it { should render_template :index }
     it "should assign @users" do
       expect(assigns(:users).size).to eq 1
+    end
+  end
+
+  describe "GET 'me'" do
+    before do
+      user
+      controller.stub(:current_user).and_return(user)
+      get :me
+    end
+    it { should be_successful }
+    it { should render_template :me }
+    it "should assign @user" do
+      expect(assigns(:user).id).to eq user.id
     end
   end
 

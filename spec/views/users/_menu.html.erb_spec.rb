@@ -28,7 +28,7 @@ describe "users/_menu.html.erb" do
 
     it { should_not have_link 'Sign in', href: new_user_session_path }
     it { should_not have_link 'Sign up', href: new_user_registration_path }
-    it { should have_link 'Profile', href: user_path(user.to_param) }
+    it { should have_link 'Profile', href: current_user_path }
   end
 
 
