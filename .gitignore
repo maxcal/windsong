@@ -15,5 +15,10 @@
 /log/*.log
 /tmp
 
+# Ignore developer environment vars
+.env
+.env.*
+!.env.dist
+
 # ignore rspec preferences
 .rspec

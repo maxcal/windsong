@@ -35,7 +35,8 @@ gem 'mongoid_slug', '~> 3.2.1'
 
 # ===== AAA ==============================================================================
 gem 'devise', '~> 3.2.4'
-
+# A generalized Rack framework for multiple-provider authentication.
+gem 'omniauth', '~> 1.2.1'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

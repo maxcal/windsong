@@ -2,12 +2,13 @@ class User
   include Mongoid::Document
   include Mongoid::Slug
 
+  has_many :authentications
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
-
 
   ## Database authenticatable
   field :username, type: String
@@ -41,7 +42,6 @@ class User
 
   # Virtual attribute for authenticating by either username or email
   attr_accessor :login
-
   validates_uniqueness_of :username, allow_nil: true
 
   slug :username, reserved: ['me', 'admin', 'root', 'user']
