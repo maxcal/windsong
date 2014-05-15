@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-feature 'Authentication' do
+feature 'Classic Authentication' do
 
   context 'when I sign up' do
-
     background do
       visit '/users/sign_up'
       fill_in 'Username', with: 'joe.bloggs'
