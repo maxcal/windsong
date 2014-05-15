@@ -14,13 +14,6 @@ class Authentication
   validates_uniqueness_of :uid, scope: :provider
   validates_presence_of :token, :expires_at
 
-  # @param auth_hash Hash
-  # @return Authentication
-  def self.find_or_create_from_omniauth_hash(auth_hash)
-    attributes = self.convert_omniauth_hash_to_attributes(auth_hash)
-    self.with(attributes).find_or_create_by(attributes.slice(:uid, :provider))
-  end
-
   # Convert OmniAuth hash to Authentication attributes
   # @param auth_hash Hash
   # @return Hash
