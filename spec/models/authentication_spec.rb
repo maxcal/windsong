@@ -20,8 +20,8 @@ describe Authentication do
     }
   end
 
-  describe ".convert_omniauth_hash_to_attributes" do
-    subject { Authentication.convert_omniauth_hash_to_attributes(hash) }
+  describe ".omniauth_hash_to_attributes" do
+    subject { Authentication.omniauth_hash_to_attributes(hash) }
     its([:provider]) { should eq 'facebook' }
     its([:uid]) { should eq '1234567' }
     its([:token]) { should eq 'ABCDEF...' }

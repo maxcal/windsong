@@ -46,23 +46,30 @@ class User
   attr_accessor :login
   validates_uniqueness_of :username, allow_nil: true
 
-  slug :username, reserved: ['me', 'admin', 'root', 'user']
+  slug :username, reserved: %w[me, admin, root, user]
+
+  # Convert OmniAuth AuthHash to User attributes
+  # @param auth_hash OmniAuth::AuthHash
+  # @return Hash
+  def self.omniauth_hash_to_attributes(auth_hash)
+    {
+        email: auth_hash[:info][:email],
+        password: Devise.friendly_token,
+        username: auth_hash[:info][:nickname],
+        confirmed_at: Time.now
+    }
+  end
 
   # Find user by authentication uid and provider or email, and create a new user if not found
-  # @param auth Hash
+  # @param auth_hash OmniAuth::AuthHash
   # @return User
-  def self.find_or_create_from_omniauth_hash(auth)
+  def self.find_or_create_from_omniauth_hash(auth_hash)
     uid_and_provider = {
-        'authentications.uid' => auth[:uid],
-        'authentications.provider' => auth[:provider]
+        'authentications.uid' => auth_hash[:uid],
+        'authentications.provider' => auth_hash[:provider]
     }
-    # Select user by uid and provider or email
-    user = self.or(uid_and_provider, { email: auth[:info][:email] }).first_or_create! do |user|
-      user.email = auth[:info][:email]
-      user.password = Devise.friendly_token
-      user.username = auth[:info][:nickname]
-      user.confirmed_at = Time.now
-    end
+    attrs = self.omniauth_hash_to_attributes(auth_hash)
+    self.or(uid_and_provider, attrs.slice(:email)).first_or_create!(attrs)
   end
 
 end
