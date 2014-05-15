@@ -2,13 +2,15 @@ class User
   include Mongoid::Document
   include Mongoid::Slug
 
-  has_many :authentications
+  embeds_many :authentications
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :recoverable, :rememberable, :trackable,
+         :validatable, :confirmable
+
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
   ## Database authenticatable
   field :username, type: String
@@ -45,5 +47,22 @@ class User
   validates_uniqueness_of :username, allow_nil: true
 
   slug :username, reserved: ['me', 'admin', 'root', 'user']
+
+  # Find user by authentication uid and provider or email, and create a new user if not found
+  # @param auth Hash
+  # @return User
+  def self.find_or_create_from_omniauth_hash(auth)
+    uid_and_provider = {
+        'authentications.uid' => auth[:uid],
+        'authentications.provider' => auth[:provider]
+    }
+    # Select user by uid and provider or email
+    user = self.or(uid_and_provider, { email: auth[:info][:email] }).first_or_create! do |user|
+      user.email = auth[:info][:email]
+      user.password = Devise.friendly_token
+      user.username = auth[:info][:nickname]
+      user.confirmed_at = Time.now
+    end
+  end
 
 end
