@@ -3,7 +3,7 @@ Windsong::Application.routes.draw do
 
   # === Users ===============================================
   devise_for :users, controllers: {
-      omniauth_callbacks: 'users/omni_auth_callbacks'
+      omniauth_callbacks: 'users/omniauth_callbacks'
   }
   get '/users/me', to: 'users#me', as: :current_user
   resources :users, only: [:show, :index]

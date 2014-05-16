@@ -1,4 +1,4 @@
-class Users::OmniAuthCallbacksController < Devise::OmniauthCallbacksController
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     auth_hash = request.env["omniauth.auth"]

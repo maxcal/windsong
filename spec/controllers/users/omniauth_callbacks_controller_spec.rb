@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Users::OmniAuthCallbacksController do
+describe Users::OmniauthCallbacksController do
 
   include Devise::TestHelpers
   include OmniAuthSpecHelper
