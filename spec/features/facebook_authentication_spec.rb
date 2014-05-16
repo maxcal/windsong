@@ -23,7 +23,7 @@ feature "Facebook Authentication" do
     scenario 'when I am on signup page and click facebook logo' do
       visit new_user_registration_path
       click_link "Sign in with Facebook"
-      expect(page).to have_content 'translation missing: en.devise.omni_auth_callbacks.user.failure'
+      expect(page).to have_content 'Could not authenticate you from Facebook because "Invalid credentials"'
     end
   end
 end
