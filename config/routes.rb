@@ -6,9 +6,8 @@ Windsong::Application.routes.draw do
       omniauth_callbacks: 'users/omniauth_callbacks'
   }
   get '/users/me', to: 'users#me', as: :current_user
-  resources :users, only: [:show, :index]
-  delete '/users/:user_id/authentications/:id',
-         to: 'users/authentications#delete',
-         as: :user_authentication
+  resources :users, only: [:show, :index] do
+    resources :authentications, only: [:destroy], controller: 'users/authentications'
+  end
 
 end

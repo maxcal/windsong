@@ -15,6 +15,6 @@ describe "users/me.html.erb" do
   it { should have_link 'Edit', edit_user_registration_path }
   it { should have_link 'My public profile', user_path(user.to_param) }
 
-  it { should have_link 'Remove '}
+  #it { should have_link 'Remove '}
 
 end
