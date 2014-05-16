@@ -11,8 +11,8 @@ describe Users::OmniauthCallbacksController do
   end
 
   describe "GET 'facebook'" do
-    context "if auth response is valid" do
 
+    context "if auth response is valid" do
       before do
         valid_credentials(:facebook)
       end
@@ -42,6 +42,11 @@ describe Users::OmniauthCallbacksController do
           get :facebook
           expect(assigns(:user)).to be_a User
         end
+
+        it "signs the user in" do
+          get :facebook
+          expect(controller.user_signed_in?).to be_true
+        end
       end
 
       context 'when user exists' do
@@ -60,6 +65,11 @@ describe Users::OmniauthCallbacksController do
           get :facebook
           expect(assigns(:authentication)).to be_persisted
         end
+
+        it "signs the user in" do
+          get :facebook
+          expect(controller.current_user.id).to eq user.id
+        end
       end
 
       context 'when user and authentication exists' do
@@ -70,6 +80,17 @@ describe Users::OmniauthCallbacksController do
           expect {
             get :facebook
           }.to_not change(User, :count)
+        end
+
+        it 'should not create a new authentication' do
+          get :facebook
+          expect(assigns(:user).authentications.count).to eq 1
+          expect(assigns(:user).authentications.first.id).to eq auth.id
+        end
+
+        it "signs the user in" do
+          get :facebook
+          expect(controller.current_user.id).to eq user.id
         end
       end
     end
