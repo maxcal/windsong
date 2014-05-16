@@ -38,6 +38,7 @@ class Authentication
 
   # @param auth_hash Hash
   # @return Boolean
+  # @raise Mongoid::Errors::Validations if record is invalid
   def update_with_omniauth_hash(auth_hash)
     new_record? ? save! : update(Authentication.omniauth_hash_to_attributes(auth_hash))
   end

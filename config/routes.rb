@@ -7,4 +7,8 @@ Windsong::Application.routes.draw do
   }
   get '/users/me', to: 'users#me', as: :current_user
   resources :users, only: [:show, :index]
+  delete '/users/:user_id/authentications/:id',
+         to: 'users/authentications#delete',
+         as: :user_authentication
+
 end

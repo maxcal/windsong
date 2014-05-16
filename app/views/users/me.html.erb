@@ -1,6 +1,15 @@
 <h1>Profile</h1>
 <p><%= @user.username.presence || @user.email %></p>
 
+<% if @user.authentications.any? %>
+<h3>Authentications</h3>
+<ul>
+  <% @user.authentications.each do |auth| %>
+  <li><%= auth.provider.humanize.capitalize %></li>
+  <% end %>
+</ul>
+<% end %>
+
 <ul class="side-nav">
   <li><%= link_to 'Edit', edit_user_registration_path %></li>
   <li><%= link_to 'My public profile', user_path(@user.to_param) %></li>
