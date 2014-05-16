@@ -18,22 +18,27 @@ class Authentication
   # @param auth_hash Hash
   # @return Hash
   def self.omniauth_hash_to_attributes(auth_hash)
-    auth_hash.slice(:uid, :provider).merge(
+    {
+        uid: auth_hash[:uid],
+        provider: auth_hash[:provider],
         token: auth_hash[:credentials][:token],
         expires_at: Time.at(auth_hash[:credentials][:expires_at])
-    )
+    }
   end
 
   # @param auth_hash Hash
   # @return Authentication
   def self.find_or_initialize_from_omniauth_hash(auth_hash)
     attrs = self.omniauth_hash_to_attributes(auth_hash)
-    self.with(attrs).find_or_initialize_by(attrs.slice(:uid, :provider))
+    self.find_or_initialize_by(attrs.slice(:uid, :provider)) do |auth|
+      auth.token = attrs[:token]
+      auth.expires_at = attrs[:expires_at]
+    end
   end
 
   # @param auth_hash Hash
   # @return Boolean
   def update_with_omniauth_hash(auth_hash)
-    update(Authentication.omniauth_hash_to_attributes(auth_hash))
+    new_record? ? save! : update(Authentication.omniauth_hash_to_attributes(auth_hash))
   end
 end

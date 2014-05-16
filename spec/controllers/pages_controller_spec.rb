@@ -9,8 +9,4 @@ describe PagesController do
     it { should be_successful }
     it { should render_template :home }
   end
-
-
-
-
 end

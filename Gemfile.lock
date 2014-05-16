@@ -44,6 +44,8 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bson (2.2.3)
     bson_ext (1.5.1)
     builder (3.1.4)
@@ -72,6 +74,7 @@ GEM
     connection_pool (2.0.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    debug_inspector (0.0.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -279,6 +282,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   better_errors (~> 1.1.0)
+  binding_of_caller
   bson_ext
   capybara (~> 2.2.1)
   coffee-rails (~> 4.0.0)

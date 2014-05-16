@@ -6,6 +6,7 @@ class Users::OmniAuthCallbacksController < Devise::OmniauthCallbacksController
 
     @authentication = @user.authentications.find_or_initialize_from_omniauth_hash(auth_hash)
     # Update existing authentication or persist a new one
+
     @authentication.update_with_omniauth_hash(auth_hash)
 
     flash[:success] = "You signed in successfully!"

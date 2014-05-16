@@ -51,6 +51,7 @@ group :development do
   gem 'miniprofiler', '~> 0.1.7.4', require: false
   # Sends meta headers for RailsPanel in google chrome
   gem 'meta_request', require: false
+  gem 'binding_of_caller', require: false
   # Annotate models
   gem 'annotate', require: false
 end

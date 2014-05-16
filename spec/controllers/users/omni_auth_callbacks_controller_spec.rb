@@ -7,26 +7,7 @@ describe Users::OmniAuthCallbacksController do
 
   before(:each) do
     request.env["devise.mapping"] = Devise.mappings[:user]
-    request.env["omniauth.auth"] = {
-        provider: 'facebook',
-        uid: '1234567',
-        info: {
-            nickname: 'jbloggs',
-            email: 'joe@bloggs.com',
-            name: 'Joe Bloggs',
-            first_name: 'Joe',
-            last_name: 'Bloggs',
-            image: 'http://graph.facebook.com/1234567/picture?type=square',
-            urls: { Facebook: 'http://www.facebook.com/jbloggs' },
-            location: 'Palo Alto, California',
-            verified: true
-        },
-        credentials: {
-            token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-            expires_at: 1321747205, # when the access token expires (it always will)
-            expires: true # this will always be true
-        }
-    }
+    request.env["omniauth.auth"] = valid_credentials_hash
   end
 
   describe "GET 'facebook'" do
