@@ -72,4 +72,8 @@ class User
     self.or(uid_and_provider, attrs.slice(:email)).first_or_create!(attrs)
   end
 
+  def presenter( context = nil )
+    @presenter ||= UserPresenter.new(self)
+  end
+
 end

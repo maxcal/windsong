@@ -13,26 +13,7 @@ describe User do
 
   describe '.find_or_create_from_omniauth_hash', :focus => true do
 
-    let(:auth_hash) {{
-        provider: 'facebook',
-        uid: '1234567',
-        info: {
-            nickname: 'jbloggs',
-            email: 'joe@bloggs.com',
-            name: 'Joe Bloggs',
-            first_name: 'Joe',
-            last_name: 'Bloggs',
-            image: 'http://graph.facebook.com/1234567/picture?type=square',
-            urls: { Facebook: 'http://www.facebook.com/jbloggs' },
-            location: 'Palo Alto, California',
-            verified: true
-        },
-        credentials: {
-            token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-            expires_at: 1321747205, # when the access token expires (it always will)
-            expires: true # this will always be true
-        }
-    }}
+    let(:auth_hash) { valid_credentials_hash }
 
     context 'given a user with authentication' do
 
@@ -92,6 +73,25 @@ describe User do
         expect(user.confirmed?).to be_true
       end
 
+    end
+  end
+
+  describe "#presenter" do
+
+    let(:user) { build_stubbed(:user) }
+
+    it "returns a UserPresenter" do
+      expect(user.presenter).to be_a UserPresenter
+    end
+
+    it "should be associated with the user" do
+      expect(user.presenter.user).to eq user
+    end
+
+    it "memoizes presenter" do
+      expect(UserPresenter).to receive(:new).once.with(user).and_call_original
+        user.presenter
+        user.presenter
     end
   end
 end

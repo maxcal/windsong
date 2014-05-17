@@ -16,6 +16,8 @@ Spork.prefork do
   require 'rspec/rails'
   require 'webmock/rspec'
 
+
+
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -28,6 +30,13 @@ Spork.prefork do
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
+
+    # Provide view context for Presenter specs
+    config.include ActiveSupport::Testing::SetupAndTeardown, :example_group => {:file_path => %r{spec/presenters}}
+    config.include ActionView::TestCase::Behavior, :example_group => {:file_path => %r{spec/presenters}}
+    config.before(:each, example_group: {:file_path => %r{spec/presenters}}) do
+      setup_with_controller  # this is necessary because otherwise @controller is nil, but why?
+    end
 
     # Clean out DB between each run
     config.before :each do
@@ -45,6 +54,16 @@ end
 # With Rails, your application modules are loaded automatically, so sometimes
 # this block can remain empty.
 Spork.each_run do
+
+  if Spork.using_spork?
+    # Reload all app files
+    ActionDispatch::Reloader.cleanup!
+    ActionDispatch::Reloader.prepare!
+
+    # All factories
+    FactoryGirl.reload
+  end
+
   # This code will be run each time you run your specs.
   #Dir[Rails.root.join("spec/support/shared_examples/*.rb")].each {|f| require f}
 end
