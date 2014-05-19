@@ -10,7 +10,7 @@ class Authentication
   field :expires_at
 
   # Constraints
-  validates_inclusion_of :provider, in: ['facebook']
+  validates_inclusion_of :provider, in: User.omniauth_providers.map { |p| p.to_s }
   validates_uniqueness_of :uid, scope: :provider
   validates_presence_of :token, :expires_at
 
