@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'spork'
 
-
 # The Spork.prefork block is run only once when the spork server is started.
 # You typically want to place most of your (slow) initializer code in here, in
 # particular, require'ing any 3rd-party gems that you don't normally modify
@@ -15,13 +14,6 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'webmock/rspec'
-
-
-
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-  Dir[Rails.root.join("spec/support/shared_examples/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
@@ -46,7 +38,6 @@ Spork.prefork do
 
   include FactoryGirl::Syntax::Methods
 
-  include SessionHelpers
 end
 
 # The Spork.each_run block is run each time you run your specs.  In case you
@@ -59,6 +50,13 @@ Spork.each_run do
     # Reload all app files
     ActionDispatch::Reloader.cleanup!
     ActionDispatch::Reloader.prepare!
+
+    # Requires supporting ruby files with custom matchers and macros, etc,
+    # in spec/support/ and its subdirectories.
+    Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+    Dir[Rails.root.join("spec/support/shared_examples/*.rb")].each {|f| require f}
+
+    include SessionHelpers
 
     # All factories
     FactoryGirl.reload
