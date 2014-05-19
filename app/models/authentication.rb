@@ -42,4 +42,10 @@ class Authentication
   def update_with_omniauth_hash(auth_hash)
     new_record? ? save! : update(Authentication.omniauth_hash_to_attributes(auth_hash))
   end
+
+  # @param context (optional) the view context
+  # @return UserPresenter
+  def presenter( context = nil )
+    @presenter ||= AuthenticationPresenter.new(self)
+  end
 end

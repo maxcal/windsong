@@ -4,8 +4,10 @@
 <% if @user.authentications.any? %>
 <h3>Authentications</h3>
 <ul>
-  <% @user.authentications.each do |auth| %>
-  <li><%= auth.provider.humanize.capitalize %></li>
+  <% @user.authentications.each do |auth|
+    auth.presenter.context = self
+  %>
+  <li><%= auth.provider.to_s.titleize %> (<%= link_to("remove", auth.presenter.path, method: :delete) %>)</li>
   <% end %>
 </ul>
 <% end %>
