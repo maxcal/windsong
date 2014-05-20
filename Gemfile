@@ -39,6 +39,10 @@ gem 'devise', '~> 3.2.4'
 gem 'omniauth', '~> 1.2.1'
 # Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook', '~> 1.6.0'
+# Continuation of the simple authorization solution (cancan) for Rails which is decoupled from user roles.
+gem 'cancancan', '~> 1.8.0'
+# Very simple Roles library without any authorization enforcement supporting scope on resource objects
+gem 'rolify', '~> 3.4.0'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

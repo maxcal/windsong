@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  rolify
   include Mongoid::Slug
 
   embeds_many :authentications
