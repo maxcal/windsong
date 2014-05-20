@@ -7,6 +7,8 @@ describe Users::AuthenticationsController do
     before do
       stub_request(:delete, "http://graph.facebook.com/1234567/users/ABCDEF...").
           to_return(status: 200, body: "TRUE", headers: {})
+
+      sign_in auth.user
     end
 
     let!(:auth) { create(:authentication) }
@@ -28,6 +30,11 @@ describe Users::AuthenticationsController do
     it "redirects to root path" do
       get :destroy, params
       expect(response).to redirect_to root_path
+    end
+
+    it "logs out user" do
+      get :destroy, params
+      expect(session).to_not have_key "warden.user.user.key"
     end
 
   end

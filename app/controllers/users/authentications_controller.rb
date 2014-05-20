@@ -11,13 +11,13 @@ class Users::AuthenticationsController < ApplicationController
         api_response =  Net::HTTP.new("graph.facebook.com")
                                 .delete("/#{auth.uid}/users/#{auth.token}")
         unless api_response.body === 'TRUE'
-          Rails.logger.error("Attempted to revoke app permissions for #{auth.user.id}, " +
+          Rails.logger.error("Attempted to revoke app permissions for #{@user.id}, " +
                                  "but received a negative response from Facebook.")
         end
     end
 
     @authentication.destroy!
-    redirect_to root_path
-
+    sign_out @user
+    redirect_to root_path, notice: "Authentication deleted."
   end
 end

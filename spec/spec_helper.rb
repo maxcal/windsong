@@ -36,8 +36,9 @@ Spork.prefork do
     end
   end
 
+  include Devise::TestHelpers
+  include Warden::Test::Helpers
   include FactoryGirl::Syntax::Methods
-
 end
 
 # The Spork.each_run block is run each time you run your specs.  In case you
