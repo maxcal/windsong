@@ -1,10 +1,15 @@
 class Users::AuthenticationsController < ApplicationController
 
+
+
   # /users/:user_id/authentications/:id
   def destroy
 
     @user = User.find(params[:user_id])
     auth = @authentication = @user.authentications.find(params[:id])
+
+    # raise an exception if the user is not able to perform the given action
+    authorize!(:delete, auth)
 
     case(@authentication.provider)
       when 'facebook'

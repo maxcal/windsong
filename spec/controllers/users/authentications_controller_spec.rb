@@ -14,6 +14,17 @@ describe Users::AuthenticationsController do
     let!(:auth) { create(:authentication) }
     let(:params) { { id: auth.to_param, user_id: auth.user.to_param  } }
 
+
+    it "requires authentication" do
+
+      sign_in create(:user)
+      bypass_rescue
+
+      expect {
+        get :destroy, params
+      }.to raise_error
+    end
+
     it "deletes authentication" do
       get :destroy, params
       expect(assigns(:user).authentications.count).to eq 0

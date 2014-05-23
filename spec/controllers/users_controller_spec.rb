@@ -6,7 +6,6 @@ describe UsersController do
   subject { response }
 
   describe "GET 'show'" do
-
     before do
       get 'show', id: user.to_param
     end
