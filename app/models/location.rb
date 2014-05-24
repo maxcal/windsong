@@ -11,6 +11,6 @@ class Location
 
   # Validations
   validates_numericality_of :lat, :lng, allow_nil: true
-  validates_inclusion_of :timezone, in: ActiveSupport::TimeZone::MAPPING.values
+  validates_inclusion_of :timezone, in: ActiveSupport::TimeZone::MAPPING.values, allow_nil: true
 
 end
