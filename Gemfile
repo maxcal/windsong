@@ -14,14 +14,18 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.1.0'
 # ZURB Foundation on Sass/Compass (http://foundation.zurb.com/)
 gem 'foundation-rails', '~> 5.2.2.0'
+# Ember.js source code wrapper for use with Ruby libs.
+gem 'ember-source', '~> 1.5.1.1'
+# Ember for Rails 3.1+
+gem 'ember-rails', '~> 0.15.0'
 
 # ===== Views  ===========================================================================
 # Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
 gem 'simple_form', '~> 3.0.2'
 
 # ===== API  =============================================================================
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+# Making it easy to serialize models for client-side use
+gem 'active_model_serializers', '~> 0.8.1'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -50,7 +54,7 @@ group :development do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer',  platforms: :ruby
   # Provides a better error page for Rails and other Rack apps.
-  gem 'better_errors', '~> 1.1.0'
+  gem 'better_errors', '~> 1.1.0', require: false
   # Page loading speed displayed on every page.
   gem 'miniprofiler', '~> 0.1.7.4', require: false
   # Sends meta headers for RailsPanel in google chrome
