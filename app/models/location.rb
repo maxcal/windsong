@@ -10,6 +10,7 @@ class Location
   alias_attribute :longitude, :lng
 
   # Validations
+  validates_uniqueness_of :lat, scope: :lng
   validates_numericality_of :lat, :lng, allow_nil: true
   validates_inclusion_of :timezone, in: ActiveSupport::TimeZone::MAPPING.values, allow_nil: true
 
