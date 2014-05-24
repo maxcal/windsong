@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe Location do
 
-  include Windsong::Responses::Geonames
-
   it { should validate_numericality_of :lat }
   it { should validate_numericality_of :lng }
   it { should respond_to :latitude }
