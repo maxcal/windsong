@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :set_user, only: [:show]
 
+  respond_to :json
+
   # get /show/:id
   def show
   end
