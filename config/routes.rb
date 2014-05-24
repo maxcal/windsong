@@ -1,5 +1,5 @@
 Windsong::Application.routes.draw do
-  resources :posts
+
 
   root to: 'pages#home'
 
@@ -11,5 +11,9 @@ Windsong::Application.routes.draw do
   resources :users, only: [:show, :index] do
     resources :authentications, only: [:destroy], controller: 'users/authentications'
   end
+
+  # === Stations ============================================
+  resources :stations
+
 
 end
