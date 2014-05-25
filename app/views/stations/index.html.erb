@@ -1,0 +1,8 @@
+<h3>Stations</h3>
+<% if @stations.any? %>
+<ul>
+  <% @stations.each do |s| %>
+  <li><%= link_to(s.name, station_path(s.to_param)) %></li>
+  <% end %>
+</ul>
+<% end %>

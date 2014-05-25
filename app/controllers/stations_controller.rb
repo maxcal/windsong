@@ -21,6 +21,12 @@ class StationsController < ApplicationController
     end
   end
 
+  # GET /stations/:id
+  def show
+    @station = Station.find(params[:id])
+  end
+
+
   private
 
   def create_params

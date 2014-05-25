@@ -90,4 +90,22 @@ describe StationsController do
       end
     end
   end
+
+  describe "GET 'show'" do
+
+    let!(:station) { create(:station) }
+
+    before { get :show, id: station.to_param }
+
+    subject { response }
+
+    it { should be_successful }
+    it { should render_template :show }
+
+    it "assigns the correct station as @station" do
+      expect(assigns(:station).id).to eq station.id
+    end
+
+  end
+
 end
