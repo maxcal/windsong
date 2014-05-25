@@ -6,4 +6,16 @@ FactoryGirl.define do
     password_confirmation "abcd1234"
     confirmed_at Time.now
   end
+
+  factory :admin, class: User  do
+    sequence(:username) { |n| n == 1 ? "admin" : "admin-#{n}" }
+    sequence(:email) { |n| n == 1 ? "admin@example.com" : "admin-#{n}@example.com" }
+    password "abc123123"
+    password_confirmation { "abc123123" }
+    confirmed_at Time.now
+    after(:create) do |user|
+      user.add_role(:admin)
+    end
+  end
+
 end

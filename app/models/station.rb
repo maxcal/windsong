@@ -8,6 +8,8 @@ class Station
 
   embeds_one :location
 
+  validates_presence_of :name, :hardware_uid
+
   validates_uniqueness_of :hardware_uid
 
   slug :name, reserved: %w[user, owner, station, stations, observations]

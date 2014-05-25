@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :station do
     sequence(:name){ |i| "Test Station #{i}" }
-    sequence(:hardware_uid){ "AA-BBBBBB-CCCCCC-#{i}" }
+    sequence(:hardware_uid){ |i| "AA-BBBBBB-CCCCCC-#{i}" }
   end
 end

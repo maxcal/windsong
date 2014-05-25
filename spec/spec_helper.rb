@@ -39,6 +39,10 @@ Spork.prefork do
   include Devise::TestHelpers
   include Warden::Test::Helpers
   include FactoryGirl::Syntax::Methods
+
+  OmniAuth.config.test_mode = true
+  Warden.test_mode!
+
 end
 
 # The Spork.each_run block is run each time you run your specs.  In case you

@@ -12,7 +12,9 @@ class Ability
     if user.has_role?(:admin)
       can :manage, User
       can :manage, Authentication
+      can :manage, Station
     else
+      can :read, Station
       can :crud, User, id: user.id
       can :manage, Authentication do |auth|
         auth.user.id == user.id

@@ -17,12 +17,16 @@ describe Ability do
   # But not others
   it { should_not be_able_to(:manage, build_stubbed(:authentication)) }
 
-  context "when user is admin" do
+  it { should be_able_to(:read, Station) }
+
+
+  context "an admin" do
     before do
       User.any_instance.stub(:has_role?).with(:admin).and_return(true)
     end
 
     it { should be_able_to(:manage, User) }
     it { should be_able_to(:manage, Authentication) }
+    it { should be_able_to(:manage, Station) }
   end
 end
