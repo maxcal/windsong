@@ -1279,3 +1279,9 @@
 // $range-slider-handle-cursor: pointer;
 
 @import 'foundation';
+
+// Ensure body to fills window vertically
+html, body, .off-canvas-wrap, .inner-wrap, .main-section
+{
+  height: 100%;
+}
