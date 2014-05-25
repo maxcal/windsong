@@ -1,7 +1,9 @@
 class User
   include Mongoid::Document
-  rolify
   include Mongoid::Slug
+  include Presentable
+
+  rolify
 
   embeds_many :authentications
 
@@ -71,10 +73,6 @@ class User
     }
     attrs = self.omniauth_hash_to_attributes(auth_hash)
     self.or(uid_and_provider, attrs.slice(:email)).first_or_create!(attrs)
-  end
-
-  def presenter( context = nil )
-    @presenter ||= UserPresenter.new(self)
   end
 
 end

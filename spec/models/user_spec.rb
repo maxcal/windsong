@@ -11,6 +11,8 @@ describe User do
     expect(user.slug).to eq 'foo'
   end
 
+  it { should respond_to :presenter }
+
   describe '.find_or_create_from_omniauth_hash', :focus => true do
 
     let(:auth_hash) { valid_credentials_hash }
@@ -76,22 +78,4 @@ describe User do
     end
   end
 
-  describe "#presenter" do
-
-    let(:user) { build_stubbed(:user) }
-
-    it "returns a UserPresenter" do
-      expect(user.presenter).to be_a UserPresenter
-    end
-
-    it "should be associated with the user" do
-      expect(user.presenter.user).to eq user
-    end
-
-    it "memoizes presenter" do
-      expect(UserPresenter).to receive(:new).once.with(user).and_call_original
-        user.presenter
-        user.presenter
-    end
-  end
 end

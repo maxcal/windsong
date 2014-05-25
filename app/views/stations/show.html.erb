@@ -1,5 +1,2 @@
 <h1><%= @station.name %></h1>
-
-<% if can? :edit, @station %>
-    <%= link_to('Edit', edit_station_path(@station.to_param), class: 'button') %>
-<% end %>
+<%= @station.presenter.button(action: :edit) if can? :edit, @station %>

@@ -3,6 +3,7 @@ class StationsController < ApplicationController
   load_and_authorize_resource
 
   before_filter :set_station, only: [:update]
+  before_filter :set_view_context
 
   # GET /stations/new
   def new
@@ -48,6 +49,10 @@ class StationsController < ApplicationController
 
   def set_station
     @station = Station.find(params[:id])
+  end
+
+  def set_view_context
+    @station.try(:presenter, view_context)
   end
 
   def create_params

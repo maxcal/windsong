@@ -3,8 +3,7 @@ require 'rspec'
 describe UserPresenter do
 
   let(:user) { build_stubbed(:user, username: 'joe') }
-  let(:context) { view }
-  let(:presenter) { UserPresenter.new(user, context) }
+  let(:presenter) { UserPresenter.new(user, view) }
 
   describe '#to_s' do
     it "capitalizes username" do
@@ -14,13 +13,13 @@ describe UserPresenter do
 
   describe '#path' do
     it "returns path to user" do
-      expect(presenter.path).to eq context.user_path(user)
+      expect(presenter.path).to eq view.user_path(user)
     end
   end
 
   describe '#url' do
     it "returns user url" do
-      expect(presenter.url).to eq context.user_url(user)
+      expect(presenter.url).to eq view.user_url(user)
     end
   end
 
@@ -28,7 +27,7 @@ describe UserPresenter do
     let(:link) { Capybara::Node::Simple.new(presenter.link(class: 'foo')) }
 
     it "returns a link to user" do
-      expect(link).to have_link 'Joe', href: context.user_path(user)
+      expect(link).to have_link 'Joe', href: view.user_path(user)
     end
 
     it "accepts the same options as link_to" do

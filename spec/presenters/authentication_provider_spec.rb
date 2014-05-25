@@ -10,7 +10,6 @@ describe AuthenticationPresenter do
 
   describe '#path' do
     it "returns user_authentication_path" do
-     presenter.context = view
      expect(presenter.path).to eq user_authentication_path(user_id: user.to_param, id: auth.to_param)
     end
   end

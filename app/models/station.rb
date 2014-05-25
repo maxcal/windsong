@@ -3,6 +3,8 @@ class Station
   include Mongoid::Timestamps
   include Mongoid::Slug
 
+  include Presentable
+
   field :name, type: String
   field :hardware_uid, type: String
 
