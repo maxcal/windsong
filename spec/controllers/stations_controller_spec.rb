@@ -108,4 +108,66 @@ describe StationsController do
 
   end
 
+
+  describe "GET edit" do
+
+    let!(:station) { create(:station) }
+
+    it "should require authorization" do
+      expect {
+        get :edit, id: station.to_param
+      }.to raise_error(CanCan::AccessDenied)
+    end
+
+    context "when authorized", authorized: true do
+
+      before { get :edit, id: station.to_param }
+      subject { response }
+
+      it { should be_successful }
+      it { should render_template :edit }
+    end
+
+  end
+
+  describe "PATCH 'update'" do
+    let!(:station) { create(:station) }
+
+    it "should require authorization" do
+      expect {
+        patch :update, id: station.to_param, station: { name: 'foobar' }
+      }.to raise_error(CanCan::AccessDenied)
+    end
+
+    context "when authorized", authorized: true do
+
+      context "with invalid params" do
+
+        before do
+          patch :update, id: station.to_param, station: { name: '' }
+        end
+
+        it "renders edit template" do
+          expect(response).to render_template :edit
+        end
+
+        it "returns 422 / Unproccessable Entity" do
+          expect(response).to be_unprocessable
+        end
+      end
+
+      before do
+        patch :update, id: station.to_param, station: { name: 'foobar' }
+        station.reload
+      end
+
+      it "should update station" do
+        expect(station.name).to eq 'foobar'
+      end
+
+      it "should redirect to station" do
+        expect(response).to redirect_to station_path(station.to_param)
+      end
+    end
+  end
 end

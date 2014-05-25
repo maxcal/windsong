@@ -37,4 +37,19 @@ feature "Stations" do
     end
   end
 
+  context "editing stations", authorized: true do
+
+    let!(:station) { create(:station) }
+
+    scenario "when I change the name of a station" do
+      visit station_path(station.to_param)
+      click_link 'Edit'
+      fill_in 'Name', with: 'Foo'
+      click_button 'Update'
+      expect(page).to have_content 'Station was successfully updated.'
+      expect(page).to have_content 'Foo'
+    end
+
+  end
+
 end

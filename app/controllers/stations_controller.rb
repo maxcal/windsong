@@ -2,6 +2,8 @@ class StationsController < ApplicationController
 
   load_and_authorize_resource
 
+  before_filter :set_station, only: [:update]
+
   # GET /stations/new
   def new
     @station = Station.new
@@ -23,13 +25,36 @@ class StationsController < ApplicationController
 
   # GET /stations/:id
   def show
-    @station = Station.find(params[:id])
+    # Rails does all the magic ...
   end
 
+  # GET /stations/:id/edit
+  def edit
+    # Rails does all the magic ...
+  end
+
+  # PATCH /stations/:id
+  def update
+    respond_to do |format|
+      if @station.update(update_params)
+        format.html { redirect_to @station, notice: 'Station was successfully updated.' }
+      else
+        format.html { render action: 'edit', status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
+  def set_station
+    @station = Station.find(params[:id])
+  end
+
   def create_params
+    params.require(:station).permit(:name, :hardware_uid)
+  end
+
+  def update_params
     params.require(:station).permit(:name, :hardware_uid)
   end
 
