@@ -23,6 +23,6 @@ class ObservationsController < ApplicationController
   end
 
   def create_params
-    params.require(:observation).permit(:speed)
+    params.require(:observation).permit(:min, :speed, :gust, :direction, :temperature)
   end
 end
