@@ -62,22 +62,4 @@ describe Authentication do
     end
   end
 
-  describe "#presenter" do
-
-    let!(:auth) { create(:authentication) }
-
-    it "returns a AuthenticationPresenter" do
-      expect(auth.presenter).to be_a AuthenticationPresenter
-    end
-
-    it "should be associated with the user" do
-      expect(auth.presenter.authentication).to eq auth
-    end
-
-    it "memoizes presenter" do
-      expect(AuthenticationPresenter).to receive(:new).once.with(auth).and_call_original
-      auth.presenter
-      auth.presenter
-    end
-  end
 end
