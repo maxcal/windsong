@@ -6,6 +6,7 @@ describe "users/me.html.erb" do
   let(:auth) { build_stubbed(:authentication, user: user) }
 
   before do
+    user.presenter(@controller.view_context)
     assign(:user, user)
     render
   end

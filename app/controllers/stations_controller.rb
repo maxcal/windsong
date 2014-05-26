@@ -45,6 +45,12 @@ class StationsController < ApplicationController
     end
   end
 
+  # DESTROY /stations/:id
+  def destroy
+    @station.destroy
+    redirect_to stations_path, notice: 'Station deleted.'
+  end
+
   private
 
   def set_station

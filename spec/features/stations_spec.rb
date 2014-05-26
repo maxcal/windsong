@@ -7,7 +7,9 @@ feature "Stations" do
     sign_in_user(admin) if example.metadata[:authorized]
   end
 
-  context "creating a new station", authorized: true do
+  let!(:station) { create(:station) unless example.metadata[:station] == false }
+
+  context "creating a new station", authorized: true, station: false do
 
     scenario "when I fill in form with invalid information" do
       visit new_station_path
@@ -27,8 +29,6 @@ feature "Stations" do
   end
 
   context "viewing stations" do
-    let!(:station) { create(:station) }
-
     scenario "when I view stations index" do
       visit stations_path
       click_link station.name
@@ -38,9 +38,6 @@ feature "Stations" do
   end
 
   context "editing stations", authorized: true do
-
-    let!(:station) { create(:station) }
-
     scenario "when I change the name of a station" do
       visit station_path(station.to_param)
       click_link 'Edit'
@@ -49,7 +46,15 @@ feature "Stations" do
       expect(page).to have_content 'Station was successfully updated.'
       expect(page).to have_content 'Foo'
     end
-
   end
+
+  context "deleting stations", authorized: true do
+    scenario "when I delete a station" do
+      visit edit_station_path(station.to_param)
+      click_link 'Delete this station'
+      expect(page).to have_content 'Station deleted.'
+    end
+  end
+
 
 end

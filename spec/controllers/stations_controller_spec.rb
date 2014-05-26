@@ -170,4 +170,30 @@ describe StationsController do
       end
     end
   end
+
+  describe "DELETE 'destroy'" do
+
+    let!(:station) { create(:station) }
+
+    it "should require authorization" do
+      expect {
+        delete :destroy, id: station.to_param
+      }.to raise_error(CanCan::AccessDenied)
+    end
+
+    context "when authorized", authorized: true do
+      it "destroys station" do
+        expect {
+          delete :destroy, id: station.to_param
+        }.to change(Station, :count).by(-1)
+      end
+
+      it "redirects to stations" do
+        delete :destroy, id: station.to_param
+        expect(response).to redirect_to stations_path
+      end
+
+    end
+  end
+
 end

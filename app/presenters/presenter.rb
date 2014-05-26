@@ -47,7 +47,7 @@ class Presenter
       when :destroy
         opts[:text] ||= "Delete this #{resource_name}"
         opts[:data].merge!( confirm:  "Are you sure you want to destroy this #{resource_name}?" )
-        opts[:method] ||= :destroy
+        opts[:method] ||= :delete
       when :new
         opts[:text] ||= "Create a new #{resource_name}"
 
