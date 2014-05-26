@@ -7,6 +7,7 @@ class Station
 
   embeds_one :location
   has_many :observations
+  has_many :events, class_name: 'Station::Event'
 
   field :name, type: String
   field :hardware_uid, type: String
@@ -15,5 +16,4 @@ class Station
   validates_uniqueness_of :hardware_uid
 
   slug :name, reserved: %w[find, station, stations, observations]
-
 end
