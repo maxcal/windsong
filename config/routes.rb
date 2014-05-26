@@ -1,8 +1,5 @@
 Windsong::Application.routes.draw do
 
-
-  resources :observations
-
   root to: 'pages#home'
 
   # === Users ===============================================
@@ -18,6 +15,10 @@ Windsong::Application.routes.draw do
   resources :stations do
     collection do
       get 'find/:hardware_uid', action: :find, as: :find
+    end
+
+    resources :observations, only: [:create, :index] do
+
     end
   end
 

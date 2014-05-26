@@ -6,4 +6,6 @@ class Observation
 
   field :speed, type: Float
 
+  validates_numericality_of :speed
+
 end

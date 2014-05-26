@@ -8,16 +8,22 @@ describe Ability do
   let(:user) { build_stubbed(:user) }
   let(:auth) { build_stubbed(:authentication, user: user) }
 
-  # Should be able to manage self
-  it { should be_able_to(:crud, user) }
-  # But not others
-  it { should_not be_able_to(:manage, User) }
-  # Should be able to manage own authentications
-  it { should be_able_to(:manage, auth) }
-  # But not others
-  it { should_not be_able_to(:manage, build_stubbed(:authentication)) }
-  it { should be_able_to(:read, Station) }
-  it { should be_able_to(:find, Station) }
+  context "a guest user" do
+    it "should be able to manage self" do
+      expect(subject).to be_able_to(:crud, user)
+    end
+
+    it "should not be able to manage others" do
+      expect(subject).to_not be_able_to(:manage, User)
+    end
+
+    it { should be_able_to(:manage, auth) }
+    it { should_not be_able_to(:manage, build_stubbed(:authentication)) }
+    it { should be_able_to(:read, Station) }
+    it { should be_able_to(:find, Station) }
+    it { should be_able_to(:read, Observation) }
+    it { should be_able_to(:create, Observation) }
+  end
 
   context "an admin" do
     before do
