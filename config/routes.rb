@@ -13,7 +13,11 @@ Windsong::Application.routes.draw do
   end
 
   # === Stations ============================================
-  resources :stations
+  resources :stations do
+    collection do
+      get 'find/:hardware_uid', action: :find, as: :find
+    end
+  end
 
 
 end

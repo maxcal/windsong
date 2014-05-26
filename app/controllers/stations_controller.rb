@@ -51,6 +51,24 @@ class StationsController < ApplicationController
     redirect_to stations_path, notice: 'Station deleted.'
   end
 
+  # GET /stations/find/:hardware_uid
+  def find
+    @station = Station.find_by(hardware_uid: params[:hardware_uid])
+
+    respond_to do |format|
+      format.html { redirect_to @station }
+      format.json  { render json: @station, status: :found }
+      # Support for legacy ardiuno units
+      format.yaml {
+        render text: {
+          id:    @station.to_param,
+          hw_id: @station.hardware_uid
+        }.to_yaml,
+          content_type: 'text/x-yaml'
+        }
+    end
+  end
+
   private
 
   def set_station

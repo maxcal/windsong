@@ -196,4 +196,32 @@ describe StationsController do
     end
   end
 
+
+  describe "GET 'find'" do
+
+    let!(:station) { create(:station) }
+
+    it "finds station" do
+      get :find, hardware_uid: station.hardware_uid
+      expect(assigns(:station).id).to eq station.id
+    end
+
+    it "redirects to station" do
+      get :find, hardware_uid: station.hardware_uid
+      expect(response).to redirect_to station
+    end
+
+    context "when request format is YAML" do
+      render_views
+
+      it "has the correct legacy yaml response" do
+        get :find, hardware_uid: station.hardware_uid, format: 'yaml'
+        yaml = YAML.load(response.body)
+        expect(yaml[:id]).to eq station.to_param
+        expect(yaml[:hw_id]).to eq station.hardware_uid
+      end
+
+    end
+
+  end
 end

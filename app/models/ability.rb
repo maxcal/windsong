@@ -14,6 +14,7 @@ class Ability
       can :manage, Authentication
       can :manage, Station
     else
+      can :find, Station
       can :read, Station
       can :crud, User, id: user.id
       can :manage, Authentication do |auth|

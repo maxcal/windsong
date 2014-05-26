@@ -16,9 +16,8 @@ describe Ability do
   it { should be_able_to(:manage, auth) }
   # But not others
   it { should_not be_able_to(:manage, build_stubbed(:authentication)) }
-
   it { should be_able_to(:read, Station) }
-
+  it { should be_able_to(:find, Station) }
 
   context "an admin" do
     before do
