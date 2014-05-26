@@ -18,6 +18,12 @@ If you using RVM it should automatically detect ruby version and gemset when you
 2) $ `bundle install`
 3) $ `rake db:setup`
 
+## Documentation
+This app uses [YARD](http://yardoc.org/) for documentation. You can run the yard documentation server with:
+`yard server`
+Then point a web browser at [http://localhost:8088](Your local YARD documentation). It will reload automatically if the
+source changes.
+
 ## Testing
 This app uses [RSpec](http://rspec.info/)
 
