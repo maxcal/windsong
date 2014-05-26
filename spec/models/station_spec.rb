@@ -8,5 +8,8 @@ describe Station do
   it { should respond_to :slug }
   it { should validate_uniqueness_of :hardware_uid }
   it { should respond_to :presenter }
+  it { should respond_to :observations }
+
+
 
 end

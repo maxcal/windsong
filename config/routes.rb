@@ -1,6 +1,8 @@
 Windsong::Application.routes.draw do
 
 
+  resources :observations
+
   root to: 'pages#home'
 
   # === Users ===============================================
