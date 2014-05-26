@@ -1,0 +1,3 @@
+# YARD documentation configuration file
+# See http://rubydoc.info/gems/yard/file/docs/GettingStarted.md
+--no-private --protected app/**/*.rb - README

@@ -26,8 +26,6 @@ gem 'simple_form', '~> 3.0.2'
 # ===== API  =============================================================================
 # Making it easy to serialize models for client-side use
 gem 'active_model_serializers', '~> 0.8.1'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 # ===== DB ===============================================================================
 # Ruby Object Mapper for Mongo
@@ -47,6 +45,11 @@ gem 'omniauth-facebook', '~> 1.6.0'
 gem 'cancancan', '~> 1.8.0'
 # Very simple Roles library without any authorization enforcement supporting scope on resource objects
 gem 'rolify', '~> 3.4.0'
+
+group :doc, :development do
+  gem 'yard', '~> 0.8.7.4'
+end
+
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
