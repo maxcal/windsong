@@ -1,8 +1,8 @@
+# Manages OmniAuth authentications
 class Users::AuthenticationsController < ApplicationController
 
-
-
-  # /users/:user_id/authentications/:id
+  # @example
+  #   DELETE /users/:user_id/authentications/:id
   def destroy
 
     @user = User.find(params[:user_id])

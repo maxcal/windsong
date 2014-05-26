@@ -1,8 +1,18 @@
 class Location
   include Mongoid::Document
 
+  # @!attribute lat
+  #   Latitude in degrees decimal
+  #   @return (Float)
   field :lat, type: Float
+  # @!attribute lng
+  #   longitude in degrees decimal
+  #   @return (Float)
   field :lng, type: Float
+  # @!attribute timezone
+  #   Timezone in ActiveSupport::TimeZone compatible format
+  #   @see ActiveSupport::TimeZone
+  #   @return (String)
   field :timezone, type: String
 
   # Allow long format coordinates

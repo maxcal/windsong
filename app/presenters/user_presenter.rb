@@ -1,17 +1,17 @@
 class UserPresenter < Presenter
 
   # How to generically refer to user
-  # @return String
+  # @return (String)
   def to_s
     user.username.capitalize
   end
 
-  # @return String user_path(user)
+  # @return (String) user_path(user)
   def path
     context.user_path(user)
   end
 
-  # @return String user_url(user)
+  # @return (String) user_url(user)
   def url
     context.user_url(user)
   end

@@ -5,12 +5,14 @@ class StationsController < ApplicationController
   before_filter :set_station, only: [:update]
   before_filter :set_view_context
 
-  # GET /stations/new
+  # @example
+  #   GET /stations/new
   def new
     @station = Station.new
   end
 
-  # POST /stations
+  # @example
+  #   POST /stations
   def create
     @station = Station.new(create_params)
 
@@ -24,17 +26,20 @@ class StationsController < ApplicationController
     end
   end
 
-  # GET /stations/:id
+  # @example
+  #   GET /stations/:id
   def show
     # Rails does all the magic ...
   end
 
-  # GET /stations/:id/edit
+  # @example
+  #   GET /stations/:id/edit
   def edit
     # Rails does all the magic ...
   end
 
-  # PATCH /stations/:id
+  # @example
+  #   PATCH /stations/:id
   def update
     respond_to do |format|
       if @station.update(update_params)
@@ -45,13 +50,15 @@ class StationsController < ApplicationController
     end
   end
 
-  # DESTROY /stations/:id
+  # @example
+  #   DESTROY /stations/:id
   def destroy
     @station.destroy
     redirect_to stations_path, notice: 'Station deleted.'
   end
 
-  # GET /stations/find/:hardware_uid
+  # @example
+  #   GET /stations/find/:hardware_uid
   def find
     @station = Station.find_by(hardware_uid: params[:hardware_uid])
 

@@ -1,11 +1,12 @@
 class StationPresenter < Presenter
 
+  # @return (String)
   def to_s
     @object.name
   end
 
-  def model_name_humanized
+  # @return (String)
+  def resource_name
     "station"
   end
-
 end

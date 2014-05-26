@@ -4,12 +4,14 @@ class ObservationsController < ApplicationController
 
   before_filter :set_station
 
-  # GET /stations/:station_id/observations
+  # @example
+  #   GET /stations/:station_id/observations
   def index
     @observations = @station.observations.all
   end
 
-  # POST /stations/:station_id/observations
+  # @example
+  #   POST /stations/:station_id/observations
   def create
     if @observation.save
       redirect_to station_observations_path(station_id: @station.to_param)
@@ -17,6 +19,8 @@ class ObservationsController < ApplicationController
       render nothing: true, status: :unprocessable_entity
     end
   end
+
+  private
 
   def set_station
     @station = Station.find(params[:station_id])

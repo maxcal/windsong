@@ -3,17 +3,21 @@ class UsersController < ApplicationController
 
   respond_to :json
 
-  # get /show/:id
+  # @example
+  #   GET /users/:id
+  # @param id [String] id or slug of user
   def show
   end
 
-  # get /users
+  # @example
+  #   GET /users/
   def index
     @users = User.all
   end
 
   # User profile page
-  # get /users/me
+  # @example
+  #   GET /users/me
   def me
     @user = current_user
   end
