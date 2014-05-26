@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/maxcal/yard-mongoid.git
+  revision: 24ad874d06b52ccc41a336c038e31c27b3fc236a
+  specs:
+    yard-mongoid (0.0.3)
+      yard (~> 0.8.4)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: aa2c82e804ef6a3ba44dfa4bd9b357017762a768
   specs:
@@ -332,3 +339,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   webmock (~> 1.17.4)
   yard (~> 0.8.7.4)
+  yard-mongoid!

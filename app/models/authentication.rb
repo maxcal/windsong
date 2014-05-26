@@ -1,13 +1,26 @@
 # Represents an 3rd party OAuth2 authentication
 class Authentication
   include Mongoid::Document
+  include Presentable
 
   embedded_in :user
 
+  # @!attribute provider
+  #   The unique name of the authentication provider
+  #   @return [String]
   field :provider, type: String
-  field :uid # the providers unique id
-  field :token
-  field :expires_at
+  # @!attribute uid
+  #   the providers unique id
+  #   @return [String]
+  field :uid, type: String # the providers unique id
+  # @!attribute token
+  #   Authorization token from provider, Used when making ajax requests to provider on behalf of user
+  #   @return [String]
+  field :token, type: String
+  # @!attribute expires_at
+  #   When the token expires
+  #   @return [Time]
+  field :expires_at, type: Time
 
   # Constraints
   validates_inclusion_of :provider, in: User.omniauth_providers.map { |p| p.to_s }
@@ -26,8 +39,8 @@ class Authentication
     }
   end
 
-  # @param auth_hash Hash
-  # @return Authentication
+  # @param [Hash] auth_hash
+  # @return (Authentication)
   def self.find_or_initialize_from_omniauth_hash(auth_hash)
     attrs = self.omniauth_hash_to_attributes(auth_hash)
     self.find_or_initialize_by(attrs.slice(:uid, :provider)) do |auth|
@@ -36,16 +49,10 @@ class Authentication
     end
   end
 
-  # @param auth_hash Hash
-  # @return Boolean
+  # @param [Hash] auth_hash
+  # @return (Boolean)
   # @raise Mongoid::Errors::Validations if record is invalid
   def update_with_omniauth_hash(auth_hash)
     new_record? ? save! : update(Authentication.omniauth_hash_to_attributes(auth_hash))
-  end
-
-  # @param context (optional) the view context
-  # @return UserPresenter
-  def presenter( context = nil )
-    @presenter ||= AuthenticationPresenter.new(self)
   end
 end

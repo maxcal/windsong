@@ -48,6 +48,7 @@ gem 'rolify', '~> 3.4.0'
 
 group :doc, :development do
   gem 'yard', '~> 0.8.7.4'
+  gem 'yard-mongoid', github: "maxcal/yard-mongoid"
 end
 
 

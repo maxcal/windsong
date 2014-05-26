@@ -14,14 +14,14 @@ All commands in this readme should be run from project root unless otherwise spe
 See Mongodb documentation for installation instructions.
 If you using RVM it should automatically detect ruby version and gemset when you `cd` into the app directory.
 
-1) $ `mongod`
-2) $ `bundle install`
-3) $ `rake db:setup`
+* $ `mongod`
+* $ `bundle install`
+* $ `rake db:setup`
 
 ## Documentation
 This app uses [YARD](http://yardoc.org/) for documentation. You can run the yard documentation server with:
-`yard server`
-Then point a web browser at [http://localhost:8088](Your local YARD documentation). It will reload automatically if the
+```yard server```
+Then point a web browser at [Your local YARD documentation](http://localhost:8088). It will reload automatically if the
 source changes.
 
 ## Testing

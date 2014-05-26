@@ -1,9 +1,10 @@
+# The CanCanCan Ability class defines the rules used when authorizing a user.
+# @see https://github.com/bryanrite/cancancan CanCanCan on Github
 class Ability
   include CanCan::Ability
 
   # Define abilities for the passed in user here.
-  # See the wiki for details:
-  # https://github.com/bryanrite/cancancan/wiki/Defining-Abilities
+  # @see https://github.com/bryanrite/cancancan/wiki/Defining-Abilities
   # @param user User the user you are granting permissions
   # @return Ability
   def initialize(user = nil)
