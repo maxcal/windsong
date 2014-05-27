@@ -6,9 +6,10 @@
 #= require ember-data
 #= require_self
 #= require windsong
+#= require_tree ./
 
 # for more details see: http://emberjs.com/guides/application/
-window.Windsong = Ember.Application.create()
+@Windsong = Ember.Application.create()
 
 # Document Ready
 jQuery ->

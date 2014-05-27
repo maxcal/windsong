@@ -15,6 +15,13 @@ GIT
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
 
+GIT
+  remote: https://github.com/bradphelan/jasminerice.git
+  revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
+  specs:
+    jasminerice (0.1.0)
+      coffee-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -143,6 +150,13 @@ GEM
     hashie (2.1.1)
     hike (1.2.3)
     i18n (0.6.9)
+    jasmine (2.0.2)
+      jasmine-core (~> 2.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.0.0)
+    jasmine-jquery-rails (2.0.3)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -201,6 +215,7 @@ GEM
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
+    phantomjs (1.9.7.0)
     polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -323,10 +338,12 @@ DEPENDENCIES
   foundation-rails (~> 5.2.2.0)
   guard-rspec (~> 4.2.8)
   guard-spork (~> 1.5.1)
+  jasmine (~> 2.0.2)
+  jasmine-jquery-rails (~> 2.0.3)
+  jasminerice!
   jquery-rails (~> 3.1.0)
   meta_request
   miniprofiler (~> 0.1.7.4)
-  minitest
   mongoid (= 4.0.0.beta1)!
   mongoid_slug (~> 3.2.1)
   omniauth (~> 1.2.1)

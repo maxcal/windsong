@@ -80,11 +80,15 @@ group :development, :test do
   gem "guard-rspec", "~> 4.2.8", require: false
   # Show test status indicators on Mac OS X
   gem "terminal-notifier-guard", "~> 1.5.3", require: false
+  # Test your JavaScript without any framework dependencies, in any environment, and with a nice descriptive syntax.
+  gem 'jasmine', '~> 2.0.2'
+  # Use the Rails asset pipeline with Jasmine
+  gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
+  # jasmine-jquery via asset pipeline
+  gem 'jasmine-jquery-rails', '~> 2.0.3'
 end
 
 group :test do
-  # Fixes annoying rspec bug "Warning: you should require 'minitest/autorun' instead."
-  gem "minitest"
   # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
   gem 'webmock', '~> 1.17.4'
   # Capybara is an integration testing tool for rack based web applications.

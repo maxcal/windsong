@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: readme
+  
+    &mdash; Documentation by YARD 0.8.7.4
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.readme.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: readme</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="label-Windsong">Windsong</h1>
+
+<p>Windsong is Ruby on Rails app which provides open-source wind data. It is
+created with needs of kite-surfing and other wind sports in mind.</p>
+
+<p>All commands in this readme should be run from project root unless
+otherwise specified.</p>
+
+<h2 id="label-Requirements">Requirements</h2>
+<ul><li>
+<p>Ruby 2.1.1</p>
+</li><li>
+<p><a href="http://www.mongodb.org/">Mongodb</a> 2.4.9</p>
+</li></ul>
+
+<h2 id="label-Installing">Installing</h2>
+
+<p>See Mongodb documentation for installation instructions. If you using RVM
+it should automatically detect ruby version and gemset when you
+<code>cd</code> into the app directory.</p>
+<ul><li>
+<p>$ <code>mongod</code></p>
+</li><li>
+<p>$ <code>bundle install</code></p>
+</li><li>
+<p>$ <code>rake db:setup</code></p>
+</li></ul>
+
+<h2 id="label-Documentation">Documentation</h2>
+
+<p>This app uses <a href="http://yardoc.org/">YARD</a> for documentation. You
+can run the yard documentation server with: <code>yard server</code> Then
+point a web browser at <a href="http://localhost:8088">Your local YARD
+documentation</a>. It will reload automatically if the source changes.</p>
+
+<h2 id="label-Testing">Testing</h2>
+
+<p>This app uses <a href="http://rspec.info/">RSpec</a></p>
+
+<h3 id="label-Continuous">Continuous</h3>
+
+<p>This app can be continuously tested with Guard $ <code>guard</code></p>
+
+<h2 id="label-Deployment">Deployment</h2>
+
+<p>This app is aimed at the excellent <a
+href="http://www.heroku.com">Heroku</a> cloud SAAS platform.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon May 26 23:09:06 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.4 (ruby-2.1.1).
+</div>
+
+  </body>
+</html>
