@@ -1,3 +1,3 @@
 describe 'Observation', ->
-  it 'Should do something', ->
-    expect(true).toEqual false
+  it "should exist", ->
+    expect(Windsong.Observation).toBeDefined
