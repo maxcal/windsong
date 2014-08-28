@@ -14,10 +14,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.1.0'
 # ZURB Foundation on Sass/Compass (http://foundation.zurb.com/)
 gem 'foundation-rails', '~> 5.2.2.0'
-# Ember.js source code wrapper for use with Ruby libs.
-gem 'ember-source', '~> 1.5.1.1'
-# Ember for Rails 3.1+
-gem 'ember-rails', '~> 0.15.0'
 
 # ===== Views  ===========================================================================
 # Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
