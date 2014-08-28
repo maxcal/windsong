@@ -11,4 +11,13 @@ describe Station do
   it { should respond_to :observations }
   it { should respond_to :events }
 
+  it "slugs the name" do
+    station = Station.create(name: "Foo", hardware_uid: "123")
+    expect(station.slug).to eq "foo"
+  end
+
+  it "accepts a custom slug" do
+    station = Station.create(name: "Foo", custom_slug: "FooBar", hardware_uid: "123")
+    expect(station.slug).to eq "foobar"
+  end
 end
