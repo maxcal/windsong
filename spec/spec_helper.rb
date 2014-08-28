@@ -23,6 +23,12 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"
 
+    # Requires supporting ruby files with custom matchers and macros, etc,
+    # in spec/support/ and its subdirectories.
+    Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+    Dir[Rails.root.join("spec/support/**/helpers/*.rb")].each {|f| require f}
+    Dir[Rails.root.join("spec/support/shared_examples/*.rb")].each {|f| require f}
+
     # Provide view context for Presenter specs
     config.include ActiveSupport::Testing::SetupAndTeardown, :example_group => {:file_path => %r{spec/presenters}}
     config.include ActionView::TestCase::Behavior, :example_group => {:file_path => %r{spec/presenters}}
@@ -36,6 +42,7 @@ Spork.prefork do
     end
   end
 
+  include SessionHelpers
   include Devise::TestHelpers
   include Warden::Test::Helpers
   include FactoryGirl::Syntax::Methods
@@ -55,13 +62,6 @@ Spork.each_run do
     # Reload all app files
     ActionDispatch::Reloader.cleanup!
     ActionDispatch::Reloader.prepare!
-
-    # Requires supporting ruby files with custom matchers and macros, etc,
-    # in spec/support/ and its subdirectories.
-    Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-    Dir[Rails.root.join("spec/support/shared_examples/*.rb")].each {|f| require f}
-
-    include SessionHelpers
 
     # All factories
     FactoryGirl.reload
