@@ -29,7 +29,7 @@ gem 'active_model_serializers', '~> 0.8.1'
 
 # ===== DB ===============================================================================
 # Ruby Object Mapper for Mongo
-gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
+gem 'mongoid', '~>4.0.0'
 #C extensions to accelerate the Ruby BSON serialization.
 gem 'bson_ext'
 # Mongoid URL slug or permalink generator
@@ -72,7 +72,7 @@ group :development, :test do
   #Loads environment variables from .env file
   gem 'dotenv-rails', '~> 0.10.0'
   # BDD for Ruby
-  gem "rspec-rails" #, "~> 2.14.1"
+  gem "rspec-rails" , "~> 2.14.1"
   # A forking Drb spec server
   gem "spork-rails", "~> 4.0.0", require: false
   # Guard is a command line tool to easily handle events on file system modifications.
