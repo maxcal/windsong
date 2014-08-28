@@ -98,8 +98,3 @@ group :test do
   # Matchers to make model specs easy on the fingers and eyes
   gem "shoulda-matchers", "~> 2.5.0"
 end
-
-group :production do
-  # For running Rails on the Heroku Cedar stack
-  gem 'rails_12factor', '~> 0.0.2'
-end
