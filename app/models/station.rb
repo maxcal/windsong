@@ -10,6 +10,7 @@ class Station
   has_many :observations
   embeds_one :latest_observation, class_name: 'Observation'
   has_many :events, class_name: 'Station::Event'
+  has_many :owners, class_name: 'User'
 
   # @attribute [rw]
   field :name, type: String
@@ -19,6 +20,8 @@ class Station
   field :custom_slug, type: String
   # @attribute [rw]
   field :online, type: Boolean
+  # @attribute [rw] - How often station should receive new observations in seconds
+  field :update_frequency, type: Integer, default: 5.minutes.seconds
 
   # @attribute slug [r]
   slug :custom_slug, reserved: %w[find, station, stations, observations, new]
@@ -37,5 +40,45 @@ class Station
     !online?
   end
 
+  def offline= bool
+    online = !bool
+  end
 
+  # Check if station should be offline by checking if it has received 3 out the last 5 obs.
+  # @return Boolean
+  def should_be_offline?
+    time_ago = (update_frequency.seconds * 4.8).ago
+    # Provides leeway for new stations
+    if created_at > time_ago
+      return false
+    end
+
+    observations.since(time_ago).order(created_at: :desc).count  < 3
+  end
+
+  def should_be_online?
+    !should_be_offline?
+  end
+
+  def check_status!
+    if should_be_offline?
+      if online?
+        update_attribute(:online, false)
+        notify_offline
+      end
+    else # should be online
+      if offline?
+        update_attribute(:online, true)
+        notify_online
+      end
+    end
+  end
+
+  def notify_online
+
+  end
+
+  def notify_offline
+
+  end
 end
