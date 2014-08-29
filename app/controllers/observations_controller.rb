@@ -1,7 +1,6 @@
 class ObservationsController < ApplicationController
 
   load_and_authorize_resource
-
   before_filter :set_station
 
   # @example
@@ -14,6 +13,7 @@ class ObservationsController < ApplicationController
   #   POST /stations/:station_id/observations
   def create
     if @observation.save
+      @station.update_attribute(:latest_observation, @observation)
       redirect_to station_observations_path(station_id: @station.to_param)
     else
       render nothing: true, status: :unprocessable_entity

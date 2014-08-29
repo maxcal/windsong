@@ -59,6 +59,11 @@ describe ObservationsController do
         post :create, params
         expect(response.status).to eq 302
       end
+
+      it "assigns station.latest_observation" do
+        post :create, params
+        expect(assigns(:station).latest_observation).to be_an_instance_of(Observation)
+      end
     end
   end
 end
