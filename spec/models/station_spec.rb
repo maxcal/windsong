@@ -20,4 +20,14 @@ describe Station do
     station = Station.create(name: "Foo", custom_slug: "FooBar", hardware_uid: "123")
     expect(station.slug).to eq "foobar"
   end
+
+  describe "offline?" do
+    let(:station) { build_stubbed(:station, online: true) }
+    it "reports if station is offline" do
+      expect(station.offline?).to be_false
+      station.online = false
+      expect(station.offline?).to be_true
+    end
+  end
+
 end

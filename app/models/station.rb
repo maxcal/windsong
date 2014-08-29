@@ -17,6 +17,9 @@ class Station
   field :hardware_uid, type: String
   # @attribute [rw]
   field :custom_slug, type: String
+  # @attribute [rw]
+  field :online, type: Boolean
+
   # @attribute slug [r]
   slug :custom_slug, reserved: %w[find, station, stations, observations, new]
 
@@ -29,5 +32,10 @@ class Station
       doc.custom_slug = name
     end
   end
+
+  def offline?
+    !online?
+  end
+
 
 end
