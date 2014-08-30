@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Station::Event do
 
-  it { should respond_to :created_at }
+  let(:event) { create(:station_event) }
 
+  describe "#notify" do
+
+  end
 end

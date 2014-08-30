@@ -63,14 +63,17 @@ class Station
   def check_status!
     if should_be_offline?
       if online?
+        event = events.create!(key: :offline)
         update_attribute(:online, false)
-        notify_offline
       end
     else # should be online
       if offline?
+        event = events.create!(key: :online)
         update_attribute(:online, true)
-        notify_online
       end
+    end
+    if event.present?
+      event.notify
     end
   end
 

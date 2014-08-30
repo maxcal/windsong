@@ -1,12 +1,14 @@
 # Used to log and notifity events such as a station going offline
-class Station::Event
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
-
+class Station::Event < Event
   belongs_to :station
 
-  field :key, type: String
-  field :meta, type: String
+  @@EVENTS = {
+    online: {},
+    offline: {}
+  }
 
-  attr_readonly :key, :meta
+  # Notify listeners of an event.
+  def notify
+
+  end
 end
