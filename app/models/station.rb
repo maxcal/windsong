@@ -25,6 +25,8 @@ class Station
   field :update_frequency, type: Integer, default: 5.minutes.seconds
   # @attribute [rw]
   field :balance, type: Float
+  # @attribute [rw] - Warn when balance drops below this level
+  field :low_balance_threshold, type: Float, default: 15
 
   # @attribute slug [r]
   slug :custom_slug, reserved: %w[find, station, stations, observations, new]
@@ -64,19 +66,27 @@ class Station
   end
 
   def check_status!
+
+    events
+
     if should_be_offline?
       if online?
-        event = events.create!(key: :offline)
+        events.create!(key: :offline).notify
         update_attribute(:online, false)
       end
     else # should be online
       if offline?
-        event = events.create!(key: :online)
+        events.create!(key: :online).notify
         update_attribute(:online, true)
       end
     end
-    if event.present?
-      event.notify
+    if low_balance?
+      events.create!(key: :low_balance).notify if online?
     end
   end
+
+  def low_balance?
+    balance < low_balance_threshold
+  end
+
 end

@@ -14,9 +14,11 @@ class Notification
       emergency: 600 # Emergency: system is unusable.
   }
 
+  field :key, type: Symbol
+  field :meta
   field :level, type: Symbol, default: :info
   field :message, type: String
-  field :read, type: Boolean
+  field :read, type: Boolean, default: false
   field :sent, type: Boolean, default: false
 
   attr_accessor :mailer

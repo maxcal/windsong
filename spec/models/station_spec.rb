@@ -65,7 +65,7 @@ describe Station do
 
   describe "check_status!" do
     context "when station becomes offline" do
-      let(:station){ create(:station, online: true) }
+      let(:station){ create(:station, online: true, balance: 999) }
       before(:each) do
         station.stub(:should_be_offline?).and_return(true)
       end
@@ -93,7 +93,7 @@ describe Station do
     end
 
     context "when station comes online" do
-      let(:station){ create(:station, online: false) }
+      let(:station){ create(:station, online: false, balance: 999) }
       before(:each) do
         station.stub(:should_be_offline?).and_return(false)
       end
@@ -118,7 +118,32 @@ describe Station do
         Station::Event.any_instance.should_receive(:notify)
         station.check_status!
       end
+    end
 
+    context "when station has a low balance" do
+      let(:station){ create(:station, online: true, balance: 1) }
+
+      it "creates a station event" do
+        expect {
+          station.check_status!
+        }.to change(station.events, :count).by(+1)
+        expect(station.events.last.key).to eq(:low_balance)
+      end
+
+      it "sends notification" do
+        Station::Event.any_instance.should_receive(:notify)
+        station.check_status!
+      end
+    end
+
+  end
+
+  describe "#low_balance?" do
+    let(:station){ create(:station, balance: 10, low_balance_threshold: 20) }
+    it "is low when there is less than the low balance threshold" do
+      expect(station.low_balance?).to be_true
+      station.balance = 999
+      expect(station.low_balance?).to be_false # sanity check
     end
   end
 end
