@@ -21,4 +21,16 @@ describe Notification do
     end
   end
 
+  describe "send_mail!!" do
+
+    let(:note) {
+      create(:notification, mailer: double("ActionMailer::Base"), recipient: build_stubbed(:user), event: build_stubbed(:event, key: :foo))
+    }
+
+    it "should send mail" do
+      note.mailer.should_receive(:foo)
+      note.send_mail!
+    end
+
+  end
 end

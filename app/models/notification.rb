@@ -16,11 +16,20 @@ class Notification
 
   field :level, type: Symbol, default: :info
   field :message, type: String
-  field :notified, type: Boolean, default: false
+  field :read, type: Boolean
+  field :sent, type: Boolean, default: false
+
+  attr_accessor :mailer
+
   belongs_to :recipient, class_name: "User"
-  has_one :event, class_name: "Event"
+  belongs_to :event, class_name: "Event"
 
   validates_inclusion_of :level, in: @@LEVELS_RFC_5424.keys, allow_blank: true
+
+  def new(attrs = nil)
+    @mailer ||= attrs[:mailer]
+    super
+  end
 
   # @param [Symbol, Integer] value
   def level=(value)
@@ -30,4 +39,8 @@ class Notification
     super(value)
   end
 
+  # @return [Mail, Nil]
+  def send_mail!
+    @mailer.send(event.key, recipient, event)
+  end
 end

@@ -10,7 +10,8 @@ class Station
   has_many :observations
   embeds_one :latest_observation, class_name: 'Observation'
   has_many :events, class_name: 'Station::Event'
-  has_many :owners, class_name: 'User'
+  has_and_belongs_to_many :owners, class_name: 'User',
+                          inverse_of: :stations
 
   # @attribute [rw]
   field :name, type: String
@@ -75,13 +76,5 @@ class Station
     if event.present?
       event.notify
     end
-  end
-
-  def notify_online
-
-  end
-
-  def notify_offline
-
   end
 end
