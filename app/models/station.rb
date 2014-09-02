@@ -23,6 +23,8 @@ class Station
   field :online, type: Boolean
   # @attribute [rw] - How often station should receive new observations in seconds
   field :update_frequency, type: Integer, default: 5.minutes.seconds
+  # @attribute [rw]
+  field :balance, type: Float
 
   # @attribute slug [r]
   slug :custom_slug, reserved: %w[find, station, stations, observations, new]

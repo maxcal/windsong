@@ -43,7 +43,7 @@ class StationMailer < ActionMailer::Base
     ) do |format|
       format.text
     end
-    deliver_and_log("offline", message)
+    deliver_and_log("low_balance", message)
   end
 
   # @param station Station
