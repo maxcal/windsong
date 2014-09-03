@@ -3,8 +3,4 @@ FactoryGirl.define do
   factory :event do
     key :test_event
   end
-
-  factory :station_event, class: Station::Event do
-    key :online
-  end
 end
