@@ -4,6 +4,7 @@ class User
   include Mongoid::Slug
   include Presentable
 
+  has_many :stations
   # @!attribute authentications
   #   The authentications embedded in this user
   #   @see Authentication
@@ -72,6 +73,8 @@ class User
   attr_accessor :login
 
   validates_uniqueness_of :username, allow_nil: true
+
+
 
   # @!attribute slug
   #   Slugged version of username used to create urls

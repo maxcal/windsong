@@ -6,7 +6,10 @@ class Observation
   # @!attribute station
   #   The station where this observation was created
   #   @return (Station)
-  belongs_to :station
+  belongs_to :station, inverse_of: :observations
+
+  # scopes
+  scope :since, ->(time_ago){ where(:created_at.gte => time_ago) }
 
   include WeatherUnit
   # WeatherUnit provides the following attributes:

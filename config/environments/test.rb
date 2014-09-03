@@ -41,6 +41,4 @@ Windsong::Application.configure do
 
   OmniAuth.config.test_mode = true
 
-  config.ember.variant = :development
-
 end

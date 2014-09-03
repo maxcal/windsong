@@ -1,3 +1,3 @@
 class ObservationSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :speed
 end

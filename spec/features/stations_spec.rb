@@ -26,6 +26,17 @@ feature "Stations" do
       expect(Station.count).to eq 1
       expect(current_path).to eq station_path(Station.last.to_param)
     end
+
+    scenario "when I create a custom slug" do
+      visit new_station_path
+      fill_in 'Name', with: 'Test Station'
+      fill_in 'Hardware uid', with: 'ABCD123'
+      fill_in 'Slug', with: 'test'
+      click_button 'Create'
+      expect(current_path).to match /test$/
+      expect(Station.last.slug).to eq("test");
+    end
+
   end
 
   context "viewing stations" do

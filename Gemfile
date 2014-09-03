@@ -14,10 +14,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails', '~> 3.1.0'
 # ZURB Foundation on Sass/Compass (http://foundation.zurb.com/)
 gem 'foundation-rails', '~> 5.2.2.0'
-# Ember.js source code wrapper for use with Ruby libs.
-gem 'ember-source', '~> 1.5.1.1'
-# Ember for Rails 3.1+
-gem 'ember-rails', '~> 0.15.0'
 
 # ===== Views  ===========================================================================
 # Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
@@ -29,7 +25,7 @@ gem 'active_model_serializers', '~> 0.8.1'
 
 # ===== DB ===============================================================================
 # Ruby Object Mapper for Mongo
-gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
+gem 'mongoid', '~>4.0.0'
 #C extensions to accelerate the Ruby BSON serialization.
 gem 'bson_ext'
 # Mongoid URL slug or permalink generator
@@ -72,7 +68,7 @@ group :development, :test do
   #Loads environment variables from .env file
   gem 'dotenv-rails', '~> 0.10.0'
   # BDD for Ruby
-  gem "rspec-rails" #, "~> 2.14.1"
+  gem "rspec-rails" , "~> 2.14.1"
   # A forking Drb spec server
   gem "spork-rails", "~> 4.0.0", require: false
   # Guard is a command line tool to easily handle events on file system modifications.
