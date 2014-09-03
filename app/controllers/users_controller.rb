@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_filter :set_user, only: [:show]
 
+  add_breadcrumb "Users", :users_path
   respond_to :json
 
   # @example
   #   GET /users/:id
-  # @param id [String] id or slug of user
   def show
+    add_breadcrumb @user.username
   end
 
   # @example
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
   # @example
   #   GET /users/me
   def me
+    add_breadcrumb "My profile"
     @user = current_user
   end
 

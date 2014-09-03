@@ -8,9 +8,11 @@ class ApplicationController < ActionController::Base
 
   # Check authorization with CanCan
   check_authorization unless :devise_controller?
+  add_breadcrumb "Home", :root_path
 
   protected
 
+  # Allow username param when creating user accounts
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:username, :email, :password, :password_confirmation, :remember_me)

@@ -42,6 +42,9 @@ gem 'cancancan', '~> 1.8.0'
 # Very simple Roles library without any authorization enforcement supporting scope on resource objects
 gem 'rolify', '~> 3.4.0'
 
+# === Misc ==============================================================================
+gem 'breadcrumbs_on_rails', '~> 2.3.0' # simple plugin for creating and managing a breadcrumbs.
+
 group :doc, :development do
   gem 'yard', '~> 0.8.7.4'
   gem 'yard-mongoid', github: "maxcal/yard-mongoid"

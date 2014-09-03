@@ -1,9 +1,8 @@
 class StationsController < ApplicationController
-
   load_and_authorize_resource
-
   before_filter :set_station, only: [:update]
   before_filter :set_view_context
+  add_breadcrumb "Stations", :stations_path
 
   # @example
   #   GET /stations/new
@@ -15,7 +14,6 @@ class StationsController < ApplicationController
   #   POST /stations
   def create
     @station = Station.new(create_params)
-
     respond_to do |format|
       if @station.save
         format.html { redirect_to station_path(@station), notice: 'Station was successfully created.' }
@@ -29,13 +27,14 @@ class StationsController < ApplicationController
   # @example
   #   GET /stations/:id
   def show
-    # Rails does all the magic ...
+    add_breadcrumb @station.name
   end
 
   # @example
   #   GET /stations/:id/edit
   def edit
-    # Rails does all the magic ...
+    add_breadcrumb @station.name, :stations_path
+    add_breadcrumb "Edit"
   end
 
   # @example
@@ -61,7 +60,6 @@ class StationsController < ApplicationController
   #   GET /stations/find/:hardware_uid
   def find
     @station = Station.find_by(hardware_uid: params[:hardware_uid])
-
     respond_to do |format|
       format.html { redirect_to @station }
       format.json  { render json: @station, status: :found }
