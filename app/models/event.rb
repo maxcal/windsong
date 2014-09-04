@@ -7,5 +7,4 @@ class Event
 
   has_many :notifications
   attr_readonly :key, :meta
-
 end

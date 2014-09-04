@@ -12,7 +12,10 @@ se:
       user:
         email: 'E-post'
         username: 'Användarnamn'
-        password: 'Password'
+        password: 'Lösenord'
+        password_confirmation: 'Upprepa lösenordet'
+        current_password: 'Nuvarande lösenord'
+
       station:
         name: 'Namn'
         hardware_uid: 'Hårdvaru ID'

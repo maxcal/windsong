@@ -10,6 +10,6 @@ describe "users/_user.html.erb" do
 
   subject { rendered }
 
-  it { should have_content user.email }
+  it { should have_link user.username.capitalize }
 
 end

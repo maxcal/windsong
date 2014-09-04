@@ -10,9 +10,12 @@ en:
 
     labels:
       user:
-        email: 'Email'
-        username: 'Username'
-        password: 'Password'
+        email:
+        username:
+        password:
+        password_confirmation:
+        current_password:
+
       station:
         name: 'Name'
         hardware_uid: 'Hardware ID'
