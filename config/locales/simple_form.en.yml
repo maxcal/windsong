@@ -5,22 +5,37 @@ en:
     required:
       text: 'required'
       mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
-    # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+          default_message: "Please review the problems below:"
 
+    labels:
+      user:
+        email: 'Email'
+        username: 'Username'
+        password: 'Password'
+      station:
+        name: 'Name'
+        hardware_uid: 'Hardware ID'
+        custom_slug: 'Slug'
+
+    hints:
+      user:
+        username: 'No funky characters, please.'
+        password: 'Make it a good one, at least 8 characters'
+      station:
+        name: 'The full name of the station.'
+        hardware_uid: 'A unique hardware identifier such as an IMEI number'
+        custom_slug: 'A URL friendly version of the name, if left blank the name will be slugged.'
+
+    placeholders:
+      user:
+        username: 'Your username'
+        password: '****'
+
+    # These are simple forms keys not currently in use
+    #include_blanks:
+      #user:
+        #age: 'Rather not say'
+    #prompts:
+      #user:
+        #gender: 'Select your gender'

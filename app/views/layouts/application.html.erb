@@ -10,37 +10,26 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
       <nav class="tab-bar">
         <section class="left-small">
           <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
         </section>
-
         <section class="middle tab-bar-section">
           <h1 class="title"><%= link_to("Windsong", root_path) %></h1>
         </section>
-
       </nav>
-
       <%= render partial: 'application/flash', locals: { flash: flash } if flash.any? %>
-
       <aside class="left-off-canvas-menu">
         <%= render partial: 'users/menu' %>
       </aside>
-
       <section class="main-section row">
         <%= yield %>
         <%= render 'shared/breadcrumbs' %>
       </section>
-
       <a class="exit-off-canvas"></a>
-
     </div>
   </div>
-
-
-
   </body>
 </html>

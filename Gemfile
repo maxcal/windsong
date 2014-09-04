@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.0'
 # ZURB Foundation on Sass/Compass (http://foundation.zurb.com/)
-gem 'foundation-rails', '~> 5.2.2.0'
+gem 'foundation-rails', '~> 5.4.3.0'
 
 # ===== Views  ===========================================================================
 # Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.

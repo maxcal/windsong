@@ -12,7 +12,7 @@
 </ul>
 <% end %>
 
-<ul class="side-nav">
-  <li><%= link_to t('.edit').capitalize, edit_user_registration_path %></li>
-  <li><%= link_to t('.public_profile').capitalize, user_path(@user.to_param) %></li>
+<ul class="stack button-group">
+  <li><%= link_to t('.edit').capitalize, edit_user_registration_path, class: 'button' %></li>
+  <li><%= link_to t('.public_profile').capitalize, user_path(@user.to_param), class: 'button' %></li>
 </ul>

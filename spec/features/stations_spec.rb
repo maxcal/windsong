@@ -10,33 +10,30 @@ feature "Stations" do
   let!(:station) { create(:station) unless example.metadata[:station] == false }
 
   context "creating a new station", authorized: true, station: false do
-
     scenario "when I fill in form with invalid information" do
       visit new_station_path
       click_button 'Create'
       expect(page).to have_content "Namecan't be blank"
-      expect(page).to have_content "Hardware uidcan't be blank"
+      expect(page).to have_content "Hardware IDcan't be blank"
     end
 
     scenario "when I fill in form with valid information" do
       visit new_station_path
       fill_in 'Name', with: 'Foo'
-      fill_in 'Hardware uid', with: 'ABC123'
+      fill_in 'Hardware ID', with: 'ABC123'
       click_button 'Create'
       expect(Station.count).to eq 1
       expect(current_path).to eq station_path(Station.last.to_param)
     end
-
     scenario "when I create a custom slug" do
       visit new_station_path
       fill_in 'Name', with: 'Test Station'
-      fill_in 'Hardware uid', with: 'ABCD123'
+      fill_in 'Hardware ID', with: 'ABCD123'
       fill_in 'Slug', with: 'test'
       click_button 'Create'
       expect(current_path).to match /test$/
       expect(Station.last.slug).to eq("test");
     end
-
   end
 
   context "viewing stations" do
@@ -66,6 +63,4 @@ feature "Stations" do
       expect(page).to have_content 'Station deleted.'
     end
   end
-
-
 end

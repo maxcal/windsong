@@ -26,6 +26,6 @@ en:
     stations:
       created: Station was successfully created.
       updated: Station was successfully updated.
-      deleted: Station deleted
+      deleted: Station deleted.
     authentication:
       deleted: "%{provider} authentication deleted."
