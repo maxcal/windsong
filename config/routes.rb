@@ -1,6 +1,6 @@
 Windsong::Application.routes.draw do
 
-  scope "(:locale)", locale: /en|se/ do
+  scope "(:locale)", locale: /en|sv/ do
     root to: 'pages#home'
   end
   #root to: 'pages#home'

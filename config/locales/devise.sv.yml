@@ -1,5 +1,5 @@
 # https://github.com/tigrish/devise-i18n/blob/master/locales/sv.yml
-se:
+sv:
   devise:
     confirmations:
       confirmed: Ditt konto har bekräftats. Du är nu inloggad.

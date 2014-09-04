@@ -10,6 +10,5 @@ describe "users/index.html.erb" do
   end
 
   subject { rendered }
-  it { should have_content user.email }
-
+  it { should have_link 'Joe.bloggs' }
 end
