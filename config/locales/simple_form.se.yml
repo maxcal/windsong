@@ -1,0 +1,41 @@
+se:
+  simple_form:
+    "yes": 'Ja'
+    "no": 'Nej'
+    required:
+      text: 'Obligatoriskt'
+      mark: '*'
+    error_notification:
+          default_message: "Var vänlig och kasta ett öga på problemen nedan:"
+
+    labels:
+      user:
+        email: 'E-post'
+        username: 'Användarnamn'
+        password: 'Password'
+      station:
+        name: 'Namn'
+        hardware_uid: 'Hårdvaru ID'
+        custom_slug: 'Slug'
+
+    hints:
+      user:
+        username: 'Inga konstigheter, tack!'
+        password: 'Minst 8 tecken.'
+      station:
+        name: 'Det fulla namnet på stationen. Ex. Flygfältet Norra'
+        hardware_uid: 'Ett unikt hårdvaru-ID såsom ett IMEI number'
+        custom_slug: 'Kan användas för att ge ett kortare och bättre länkar till stationen.'
+
+    placeholders:
+      user:
+        username: 'Ditt användarnamn'
+        password: '****'
+
+    # These are simple forms keys not currently in use
+    #include_blanks:
+      #user:
+        #age: 'Rather not say'
+    #prompts:
+      #user:
+        #gender: 'Select your gender'
