@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_filter :set_user, only: [:show]
 
-  add_breadcrumb "Users", :users_path
+  before_filter :set_user, only: :show
   respond_to :json
+
+  before_action do
+    add_breadcrumb User.model_name.human(count: 2), :users_path
+  end
 
   # @example
   #   GET /users/:id
@@ -20,7 +24,7 @@ class UsersController < ApplicationController
   # @example
   #   GET /users/me
   def me
-    add_breadcrumb "My profile"
+    add_breadcrumb I18n.t('users.me.my_profile').capitalize
     @user = current_user
   end
 

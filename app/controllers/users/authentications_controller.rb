@@ -23,6 +23,6 @@ class Users::AuthenticationsController < ApplicationController
 
     @authentication.destroy!
     sign_out @user
-    redirect_to root_path, notice: "Authentication deleted."
+    redirect_to root_path, notice: I18n.t('flashes.authentication.deleted', provider: @authentication.provider.capitalize)
   end
 end

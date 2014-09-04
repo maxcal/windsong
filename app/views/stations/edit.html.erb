@@ -1,3 +1,3 @@
-<h1>Editing <%= @station.name %></h1>
+<h1><%= t('editing').capitalize + ': ' + @station.name %></h1>
 <%= render partial: 'stations/form', locals: { station: @station, url: station_path(@station.to_param) } %>
 <%= @station.presenter.button(action: :destroy, class: 'small') if can? :destroy, @station %>

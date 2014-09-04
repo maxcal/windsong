@@ -5,12 +5,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :set_locale
   # Check authorization with CanCan
   check_authorization unless :devise_controller?
-  add_breadcrumb "Home", :root_path
+  before_action ->{ add_breadcrumb I18n.t(:home).capitalize, :root_path }
 
   protected
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  # default url options
+  def default_url_options(options={})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { locale: I18n.locale }
+  end
 
   # Allow username param when creating user accounts
   def configure_permitted_parameters

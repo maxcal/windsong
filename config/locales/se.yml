@@ -1,0 +1,31 @@
+se:
+  mongoid:
+    models:
+      user:
+        one: Användare
+        other: Användare
+      station:
+        one: Station
+        other: Stationer
+      observation:
+        one: Observation
+        other: Observationer
+
+  home: hem
+  editing: redigerar
+
+  users:
+    me:
+      profile: profil
+      my_profile: min profil
+      edit: ändra uppgifter
+      public_profile: din profil så som andra ser den
+      remove_auth: ta bort
+
+  flashes:
+    stations:
+      created: Stationen skapades utan problem. Wehoo!
+      updated: Stationen har uppdaterats.
+      deleted: Stationsen har raderats.
+    authentications:
+      deleted: "%{provider} är inte längre kopplat till ditt konto."

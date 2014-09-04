@@ -1,4 +1,4 @@
-<h3>Stations</h3>
+<h3><%= Station.model_name.human(count: 2).capitalize  %></h3>
 <% if @stations.any? %>
 <ul>
   <% @stations.each do |s| %>

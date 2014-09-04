@@ -2,7 +2,8 @@ class StationsController < ApplicationController
   load_and_authorize_resource
   before_filter :set_station, only: [:update]
   before_filter :set_view_context
-  add_breadcrumb "Stations", :stations_path
+
+  before_action ->{ add_breadcrumb Station.model_name.human(count: 2).capitalize, :stations_path }
 
   # @example
   #   GET /stations/new
@@ -16,7 +17,7 @@ class StationsController < ApplicationController
     @station = Station.new(create_params)
     respond_to do |format|
       if @station.save
-        format.html { redirect_to station_path(@station), notice: 'Station was successfully created.' }
+        format.html { redirect_to station_path(@station), notice: I18n.t('flashes.stations.created') }
       else
         response.status = :unprocessable_entity
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class StationsController < ApplicationController
   def update
     respond_to do |format|
       if @station.update(update_params)
-        format.html { redirect_to @station, notice: 'Station was successfully updated.' }
+        format.html { redirect_to @station, notice: I18n.t('flashes.stations.updated') }
       else
         format.html { render action: 'edit', status: :unprocessable_entity }
       end
@@ -53,7 +54,7 @@ class StationsController < ApplicationController
   #   DESTROY /stations/:id
   def destroy
     @station.destroy
-    redirect_to stations_path, notice: 'Station deleted.'
+    redirect_to stations_path, notice: I18n.t('flashes.stations.deleted')
   end
 
   # @example

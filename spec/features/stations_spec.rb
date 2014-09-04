@@ -41,10 +41,10 @@ feature "Stations" do
 
   context "viewing stations" do
     scenario "when I view stations index" do
-      visit stations_path
+      visit stations_path(locale: :en)
       click_link station.name
       expect(page).to have_content station.name
-      expect(current_path).to eq station_path(station.to_param)
+      expect(current_path).to eq station_path(station)
     end
   end
 

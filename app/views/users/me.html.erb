@@ -1,4 +1,4 @@
-<h1>Profile</h1>
+<h1><%= t('.my_profile').capitalize %></h1>
 <p><%= @user.username.presence || @user.email %></p>
 
 <% if @user.authentications.any? %>
@@ -13,6 +13,6 @@
 <% end %>
 
 <ul class="side-nav">
-  <li><%= link_to 'Edit', edit_user_registration_path %></li>
-  <li><%= link_to 'My public profile', user_path(@user.to_param) %></li>
+  <li><%= link_to t('.edit').capitalize, edit_user_registration_path %></li>
+  <li><%= link_to t('.public_profile').capitalize, user_path(@user.to_param) %></li>
 </ul>
