@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '~> 2.1.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
@@ -89,4 +91,8 @@ group :test do
   gem "factory_girl_rails", "~> 4.4.1"
   # Matchers to make model specs easy on the fingers and eyes
   gem "shoulda-matchers", "~> 2.5.0"
+end
+
+group :production do
+  gem 'rails_12factor', '~> 0.0.2'
 end
