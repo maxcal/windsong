@@ -6,29 +6,52 @@ class Station
   include Presentable
 
   # Relations
+  # @!attribute [rw] latest_observation
+  #    @return [Location]
   embeds_one :location
+  # @!attribute [rw] observations
+  #   @return [Mongoid::Relations]
   has_many :observations
+  # @!attribute [rw] latest_observation
+  #    @return [Observation]
   embeds_one :latest_observation, class_name: 'Observation'
+  # @!attribute [rw] events
+  #    @return [Event]
   has_many :events, class_name: 'Station::Event'
+  # @!attribute [rw] owners
+  #    @return [Mongoid::Relations]
   has_and_belongs_to_many :owners, class_name: 'User',
                           inverse_of: :stations
-
-  # @attribute [rw]
+  # @!attribute [rw] name
+  #   @return [String]
   field :name, type: String
-  # @attribute [rw]
+  # @!attribute [rw] hardware_uid
+  #   @return [String]
+  #   A unique hardware ID such as an IMEI number. Used by stations to lookup their ID.
   field :hardware_uid, type: String
-  # @attribute [rw]
+  # @!attribute [rw] custom_slug
+  #   @return [String]
   field :custom_slug, type: String
-  # @attribute [rw]
+  # @!attribute [rw] online
+  #   @return [Boolean]
+  #   Is this station responsive - do we have up to date observations?
   field :online, type: Boolean
-  # @attribute [rw] - How often station should receive new observations in seconds
+  # @!attribute [rw] update_frequency
+  #   @return [Integer]
+  #   How often station should receive new observations in seconds
   field :update_frequency, type: Integer, default: 5.minutes.seconds
-  # @attribute [rw]
+  # @!attribute [rw] balance
+  #   @return [Float]
+  #   The balance on a prepaid SIM card - may be zero if fixed rate
   field :balance, type: Float
-  # @attribute [rw] - Warn when balance drops below this level
+  # @!attribute [rw] low_balance_threshold
+  #   @return [Float]
+  #   Notify owner when balance drops below this threshold
+  #   @note set to zero for a fixed rate or monthly subscription
   field :low_balance_threshold, type: Float, default: 15
-
-  # @attribute slug [r]
+  # @!attribute slug [rw]
+  #   @return [String]
+  #   Used in addition to ID for URLs
   slug :custom_slug, reserved: %w[find, station, stations, observations, new]
 
   validates_presence_of :name, :hardware_uid
@@ -41,6 +64,8 @@ class Station
     end
   end
 
+  # Inverse of online?
+  # Why? Readability...
   def offline?
     !online?
   end
@@ -57,18 +82,20 @@ class Station
     if created_at > time_ago
       return false
     end
-
     observations.since(time_ago).order(created_at: :desc).count  < 3
   end
 
+  # The inverse of should_be_offline?
+  # Why? Readability...
+  # @return [Boolean]
   def should_be_online?
     !should_be_offline?
   end
 
+  # Check station status and send notifications if it is unresponsive or has a low balance
+  #   @return [Mongoid::Relations] any events created
   def check_status!
-
     events
-
     if should_be_offline?
       if online?
         events.create!(key: :offline).notify
@@ -85,6 +112,8 @@ class Station
     end
   end
 
+  # Check if station balance is low
+  #   @return [Boolean]
   def low_balance?
     balance < low_balance_threshold
   end

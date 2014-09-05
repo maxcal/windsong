@@ -123,6 +123,56 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#balance-instance_method" title="#balance (instance method)">- (Object) <strong>balance</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#custom_slug-instance_method" title="#custom_slug (instance method)">- (Object) <strong>custom_slug</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#hardware_uid-instance_method" title="#hardware_uid (instance method)">- (Object) <strong>hardware_uid</strong> </a>
     
 
@@ -173,7 +223,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#slug-instance_method" title="#slug (instance method)">- (Object) <strong>slug</strong> </a>
+      <a href="#online-instance_method" title="#online (instance method)">- (Object) <strong>online</strong> </a>
     
 
     
@@ -195,11 +245,184 @@
 </li>
 
     
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#slug-instance_method" title="#slug (instance method)">- (Object) <strong>slug</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
   </ul>
 
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_status%21-instance_method" title="#check_status! (instance method)">- (Object) <strong>check_status!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#low_balance%3F-instance_method" title="#low_balance? (instance method)">- (Boolean) <strong>low_balance?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#offline%3D-instance_method" title="#offline= (instance method)">- (Object) <strong>offline=</strong>(bool) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#offline%3F-instance_method" title="#offline? (instance method)">- (Boolean) <strong>offline?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#should_be_offline%3F-instance_method" title="#should_be_offline? (instance method)">- (Boolean) <strong>should_be_offline?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Check if station should be offline by checking if it has received 3 out the
+last 5 obs.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#should_be_online%3F-instance_method" title="#should_be_online? (instance method)">- (Boolean) <strong>should_be_online?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -207,7 +430,7 @@
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Presentable.html" title="Presentable (module)">Presentable</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Presentable.html#presenter-instance_method" title="Presentable#presenter (method)">#presenter</a></span></p>
@@ -219,9 +442,65 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="hardware_uid=-instance_method"></span>
+      <span id="balance=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="hardware_uid-instance_method">
+  <h3 class="signature first" id="balance-instance_method">
+  
+    - (<tt>Object</tt>) <strong>balance</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 28</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:balance</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>Float</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="custom_slug=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="custom_slug-instance_method">
+  
+    - (<tt>Object</tt>) <strong>custom_slug</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 21</span>
+
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:custom_slug</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hardware_uid=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hardware_uid-instance_method">
   
     - (<tt>Object</tt>) <strong>hardware_uid</strong> 
   
@@ -235,10 +514,10 @@
       <pre class="lines">
 
 
-15</pre>
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 19</span>
 
 <span class='id identifier rubyid_field'>field</span> <span class='symbol'>:hardware_uid</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
     </td>
@@ -263,10 +542,10 @@
       <pre class="lines">
 
 
-13</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 17</span>
 
 <span class='id identifier rubyid_field'>field</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>String</span></pre>
     </td>
@@ -275,11 +554,11 @@
 </div>
     
       
-      <span id="slug=-instance_method"></span>
+      <span id="online=-instance_method"></span>
       <div class="method_details ">
-  <h3 class="signature " id="slug-instance_method">
+  <h3 class="signature " id="online-instance_method">
   
-    - (<tt>Object</tt>) <strong>slug</strong> 
+    - (<tt>Object</tt>) <strong>online</strong> 
   
 
   
@@ -291,12 +570,40 @@
       <pre class="lines">
 
 
-21</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 23</span>
 
-<span class='id identifier rubyid_slug'>slug</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>reserved:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>find,</span><span class='words_sep'> </span><span class='tstring_content'>station,</span><span class='words_sep'> </span><span class='tstring_content'>stations,</span><span class='words_sep'> </span><span class='tstring_content'>observations</span><span class='words_sep'>]</span></pre>
+<span class='id identifier rubyid_field'>field</span> <span class='symbol'>:online</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='const'>Boolean</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="slug-instance_method">
+  
+    - (<tt>Object</tt>) <strong>slug</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 34</span>
+
+<span class='id identifier rubyid_slug'>slug</span> <span class='symbol'>:custom_slug</span><span class='comma'>,</span> <span class='label'>reserved:</span> <span class='qwords_beg'>%w[</span><span class='tstring_content'>find,</span><span class='words_sep'> </span><span class='tstring_content'>station,</span><span class='words_sep'> </span><span class='tstring_content'>stations,</span><span class='words_sep'> </span><span class='tstring_content'>observations,</span><span class='words_sep'> </span><span class='tstring_content'>new</span><span class='words_sep'>]</span></pre>
     </td>
   </tr>
 </table>
@@ -305,10 +612,336 @@
   </div>
 
 
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="check_status!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>check_status!</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_status!'>check_status!</span>
+
+  <span class='id identifier rubyid_events'>events</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_should_be_offline?'>should_be_offline?</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_online?'>online?</span>
+      <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create!'>create!</span><span class='lparen'>(</span><span class='label'>key:</span> <span class='symbol'>:offline</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_notify'>notify</span>
+      <span class='id identifier rubyid_update_attribute'>update_attribute</span><span class='lparen'>(</span><span class='symbol'>:online</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span> <span class='comment'># should be online
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_offline?'>offline?</span>
+      <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create!'>create!</span><span class='lparen'>(</span><span class='label'>key:</span> <span class='symbol'>:online</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_notify'>notify</span>
+      <span class='id identifier rubyid_update_attribute'>update_attribute</span><span class='lparen'>(</span><span class='symbol'>:online</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_low_balance?'>low_balance?</span>
+    <span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_create!'>create!</span><span class='lparen'>(</span><span class='label'>key:</span> <span class='symbol'>:low_balance</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_notify'>notify</span> <span class='kw'>if</span> <span class='id identifier rubyid_online?'>online?</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="low_balance?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>low_balance?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_low_balance?'>low_balance?</span>
+  <span class='id identifier rubyid_balance'>balance</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_low_balance_threshold'>low_balance_threshold</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="offline=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>offline=</strong>(bool) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_offline='>offline=</span> <span class='id identifier rubyid_bool'>bool</span>
+  <span class='id identifier rubyid_online'>online</span> <span class='op'>=</span> <span class='op'>!</span><span class='id identifier rubyid_bool'>bool</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="offline?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>offline?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_offline?'>offline?</span>
+  <span class='op'>!</span><span class='id identifier rubyid_online?'>online?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="should_be_offline?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>should_be_offline?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Check if station should be offline by checking if it has received 3 out the
+last 5 obs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Boolean</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_should_be_offline?'>should_be_offline?</span>
+  <span class='id identifier rubyid_time_ago'>time_ago</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_update_frequency'>update_frequency</span><span class='period'>.</span><span class='id identifier rubyid_seconds'>seconds</span> <span class='op'>*</span> <span class='float'>4.8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span>
+  <span class='comment'># Provides leeway for new stations
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_created_at'>created_at</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_time_ago'>time_ago</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_observations'>observations</span><span class='period'>.</span><span class='id identifier rubyid_since'>since</span><span class='lparen'>(</span><span class='id identifier rubyid_time_ago'>time_ago</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='label'>created_at:</span> <span class='symbol'>:desc</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>  <span class='op'>&lt;</span> <span class='int'>3</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="should_be_online?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>should_be_online?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_should_be_online?'>should_be_online?</span>
+  <span class='op'>!</span><span class='id identifier rubyid_should_be_offline?'>should_be_offline?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
 
     <div id="footer">
-  Generated on Mon May 26 23:09:07 2014 by
+  Generated on Fri Sep  5 19:35:01 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.1).
 </div>

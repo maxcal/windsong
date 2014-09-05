@@ -4,7 +4,6 @@ class Authentication
   include Presentable
 
   embedded_in :user
-
   # @!attribute provider
   #   The unique name of the authentication provider
   #   @return [String]
@@ -28,8 +27,8 @@ class Authentication
   validates_presence_of :token, :expires_at
 
   # Convert OmniAuth hash to Authentication attributes
-  # @param auth_hash Hash
-  # @return Hash
+  # @param [Hash] auth_hash
+  # @return [Hash]
   def self.omniauth_hash_to_attributes(auth_hash)
     {
         uid: auth_hash[:uid],
@@ -40,7 +39,7 @@ class Authentication
   end
 
   # @param [Hash] auth_hash
-  # @return (Authentication)
+  # @return [Authentication]
   def self.find_or_initialize_from_omniauth_hash(auth_hash)
     attrs = self.omniauth_hash_to_attributes(auth_hash)
     self.find_or_initialize_by(attrs.slice(:uid, :provider)) do |auth|
@@ -50,8 +49,8 @@ class Authentication
   end
 
   # @param [Hash] auth_hash
-  # @return (Boolean)
-  # @raise Mongoid::Errors::Validations if record is invalid
+  # @return [Boolean]
+  # @raise [Mongoid::Errors::Validations] if record is invalid
   def update_with_omniauth_hash(auth_hash)
     new_record? ? save! : update(Authentication.omniauth_hash_to_attributes(auth_hash))
   end

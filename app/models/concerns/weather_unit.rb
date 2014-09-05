@@ -1,9 +1,8 @@
-# Shared behavior for observations and forecasts
+# Shared attributes for observations and forecasts
 module WeatherUnit
   extend ActiveSupport::Concern
 
   included do
-
     # WeatherUnit provides the following attributes:
     # @!attribute min
     #   Wind speed min in M/S

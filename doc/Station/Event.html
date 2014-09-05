@@ -73,10 +73,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><span class='object_link'><a href="../Event.html" title="Event (class)">Event</a></span></span>
       
         <ul class="fullTree">
           <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="../Event.html" title="Event (class)">Event</a></span></li>
           
             <li class="next">Station::Event</li>
           
@@ -90,15 +92,11 @@
     
   
     
-      <dt class="r2">Includes:</dt>
-      <dd class="r2">Mongoid::Document, Mongoid::Timestamps::Created</dd>
-      
-    
   
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">app/models/station/event.rb</dd>
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/station/event.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -106,7 +104,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Used to log and notifity events such as a station going offline</p>
+<p>Station events should mark when stations go up / down, change ownership
+etc. They also notify station owners and throttle notifications.</p>
 
 
   </div>
@@ -115,6 +114,32 @@
   
 
 </div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="PRESETS-classvariable" class="">@@PRESETS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='label'>online:</span> <span class='lbrace'>{</span>
+        <span class='label'>level:</span> <span class='symbol'>:info</span><span class='comma'>,</span>
+        <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{name} is online</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>offline:</span> <span class='lbrace'>{</span>
+        <span class='label'>level:</span> <span class='symbol'>:warning</span><span class='comma'>,</span>
+        <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{name} is offline</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='comment'>#cooldown: 1.day
+</span>     <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>low_balance:</span> <span class='lbrace'>{</span>
+        <span class='label'>level:</span> <span class='symbol'>:warning</span><span class='comma'>,</span>
+        <span class='label'>message:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{name} has a low balance</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='label'>cooldown:</span> <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span> <span class='comment'># wait this long before notifying user of this event again
+</span>    <span class='rbrace'>}</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -123,12 +148,234 @@
 
 
   
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#can_notify%3F-instance_method" title="#can_notify? (instance method)">- (Boolean) <strong>can_notify?</strong> </a>
+    
+
+    
+  </span>
   
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Test if this event can send notifications.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#notify-instance_method" title="#notify (instance method)">- (Array, Nil) <strong>notify</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Notify station owners of an event.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="can_notify?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>can_notify?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Test if this event can send notifications</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station/event.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_can_notify?'>can_notify?</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_notified?'>notified?</span>
+    <span class='kw'>false</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event_type'>event_type</span><span class='lbracket'>[</span><span class='symbol'>:cooldown</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_station'>station</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>key:</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='label'>notified:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>
+</span><span class='id identifier rubyid_        .since'>        .since</span><span class='lparen'>(</span><span class='id identifier rubyid_event_type'>event_type</span><span class='lbracket'>[</span><span class='symbol'>:cooldown</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>0</span>
+    <span class='kw'>else</span>
+      <span class='kw'>true</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="notify-instance_method">
+  
+    - (<tt>Array</tt>, <tt>Nil</tt>) <strong>notify</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Notify station owners of an event.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>, <tt>Nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/station/event.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_notify'>notify</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_can_notify?'>can_notify?</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_update_attribute'>update_attribute</span><span class='lparen'>(</span><span class='symbol'>:notified</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_station'>station</span><span class='period'>.</span><span class='id identifier rubyid_owners'>owners</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>|</span>
+      <span class='id identifier rubyid_note'>note</span> <span class='op'>=</span> <span class='id identifier rubyid_notifications'>notifications</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='label'>level:</span> <span class='id identifier rubyid_event_type'>event_type</span><span class='lbracket'>[</span><span class='symbol'>:level</span><span class='rbracket'>]</span><span class='comma'>,</span>
+          <span class='label'>recipient:</span> <span class='id identifier rubyid_owner'>owner</span><span class='comma'>,</span>
+          <span class='label'>message:</span> <span class='id identifier rubyid_event_type'>event_type</span><span class='lbracket'>[</span><span class='symbol'>:message</span><span class='rbracket'>]</span> <span class='op'>%</span> <span class='id identifier rubyid_station'>station</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_symbolize_keys'>symbolize_keys</span><span class='comma'>,</span>
+          <span class='label'>mailer:</span> <span class='const'>StationMailer</span>
+      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_note'>note</span><span class='period'>.</span><span class='id identifier rubyid_send_mail!'>send_mail!</span>
+      <span class='id identifier rubyid_note'>note</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
     <div id="footer">
-  Generated on Mon May 26 23:09:07 2014 by
+  Generated on Fri Sep  5 19:35:01 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.1).
 </div>

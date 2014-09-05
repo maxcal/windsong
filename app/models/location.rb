@@ -1,6 +1,5 @@
 class Location
   include Mongoid::Document
-
   # @!attribute lat
   #   Latitude in degrees decimal
   #   @return (Float)
@@ -24,6 +23,8 @@ class Location
   validates_numericality_of :lat, :lng, allow_nil: true
   validates_inclusion_of :timezone, in: ActiveSupport::TimeZone::MAPPING.values, allow_nil: true
 
+  # @!attribute station
+  #   @returns [Station]
   embedded_in :station
 
 end

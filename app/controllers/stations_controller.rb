@@ -2,7 +2,6 @@ class StationsController < ApplicationController
   load_and_authorize_resource
   before_filter :set_station, only: [:update]
   before_filter :set_view_context
-
   before_action ->{ add_breadcrumb Station.model_name.human(count: 2).capitalize, :stations_path }
 
   # @example
@@ -57,6 +56,7 @@ class StationsController < ApplicationController
     redirect_to stations_path, notice: I18n.t('flashes.stations.deleted')
   end
 
+  # Used by stations to lookup the in App ID
   # @example
   #   GET /stations/find/:hardware_uid
   def find
@@ -92,5 +92,4 @@ class StationsController < ApplicationController
   def update_params
     params.require(:station).permit(:name, :hardware_uid, :custom_slug)
   end
-
 end

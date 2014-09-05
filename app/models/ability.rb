@@ -9,9 +9,7 @@ class Ability
   # @return Ability
   def initialize(user = nil)
     user ||= User.new # guest user (not logged in)
-
     alias_action :create, :read, :update, :destroy, to: :crud
-
     if user.has_role?(:admin)
       can :manage, User
       can :manage, Authentication

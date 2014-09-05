@@ -74,12 +74,10 @@ class User
 
   validates_uniqueness_of :username, allow_nil: true
 
-
-
   # @!attribute slug
   #   Slugged version of username used to create urls
   #   @return (String)
-  slug :username, reserved: %w[me, admin, root, user]
+  slug :username, reserved: %w[me, admin, root, user, password]
 
   # Convert OmniAuth AuthHash to User attributes
   # @param auth_hash (OmniAuth::AuthHash)

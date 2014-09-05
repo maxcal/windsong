@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
+  private
+
   # Allow username param when creating user accounts
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
@@ -33,9 +35,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     session["user_return_to"] || root_path
   end
-
-
-  private
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
