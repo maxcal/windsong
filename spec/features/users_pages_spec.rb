@@ -31,7 +31,7 @@ feature "User pages" do
     let!(:user) { create_user_and_sign_in }
 
     background do
-      click_link 'Profile'
+      click_link 'My profile'
     end
 
     scenario 'when I visit the profile page' do

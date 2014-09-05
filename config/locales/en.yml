@@ -15,6 +15,12 @@ en:
   editing: editing
 
   users:
+    menu:
+      profile: My profile
+      sign_in: Log in
+      sign_up: Register
+      sign_out: Sign out
+
     me:
       profile: profile
       my_profile: my profile

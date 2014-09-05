@@ -15,6 +15,11 @@ sv:
   editing: redigerar
 
   users:
+    menu:
+      profile: Min profil
+      sign_in: Logga in
+      sign_up: Registrera dig
+      sign_out: Logga ut
     me:
       profile: profil
       my_profile: min profil

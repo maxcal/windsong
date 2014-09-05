@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
 <ul class="off-canvas-list">
   <li><label>Windsong</label></li>
-  <li><%= link_to 'Profile', current_user_path %></li>
-  <li><%= link_to('Sign out', destroy_user_session_path, :method => :delete) %></li>
+  <li><%= link_to t('.profile'), current_user_path %></li>
+  <li><%= link_to(t('.sign_out'), destroy_user_session_path, :method => :delete) %></li>
 </ul>
 <% else # user is not signed in %>
 <ul class="off-canvas-list">
   <li><label>Windsong</label></li>
-  <li><%= link_to 'Sign in', new_user_session_path %></li>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
+  <li><%= link_to t('.sign_in'), new_user_session_path %></li>
+  <li><%= link_to t('.sign_up'), new_user_registration_path %></li>
 </ul>
 <% end %>

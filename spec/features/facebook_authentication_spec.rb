@@ -39,7 +39,7 @@ feature "Facebook Authentication" do
       stub_request(:delete,  /graph.facebook.com.*/)
     end
     scenario 'I should be able to remove my facebook authentication' do
-      click_link "Profile"
+      click_link "My profile"
       click_link "remove"
       expect(page).to have_content("Facebook authentication deleted.")
     end
