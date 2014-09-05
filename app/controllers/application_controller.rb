@@ -8,17 +8,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   # Check authorization with CanCan
   check_authorization unless :devise_controller?
-  before_action ->{ add_breadcrumb I18n.t(:home).capitalize, :root_path }
 
-  protected
-
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-  end
+  before_action :add_home_breadcrumb
 
   # default url options
   def default_url_options(options={})
-    logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { locale: I18n.locale }
   end
 
@@ -39,4 +33,16 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     session["user_return_to"] || root_path
   end
+
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def add_home_breadcrumb
+    add_breadcrumb I18n.t(:home).capitalize, :root_path
+  end
+
 end

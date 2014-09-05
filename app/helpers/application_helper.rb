@@ -9,4 +9,8 @@ module ApplicationHelper
     model.model_name.human(count: 2)
   end
 
+  def is_navigational_format?
+    Devise.navigational_formats.include?(request_format)
+  end
+
 end

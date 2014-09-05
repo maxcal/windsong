@@ -1,6 +1,6 @@
 # Station events should mark when stations go up / down, change ownership etc.
 # They also notify station owners and throttle notifications.
-class Station::Event < Event
+class Station::Event < ::Event
   belongs_to :station
   scope :since, ->(time_ago){ where(:created_at.gte => time_ago) }
   attr_internal :event_type

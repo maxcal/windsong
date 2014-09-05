@@ -1,7 +1,12 @@
 # https://github.com/tigrish/devise-i18n/blob/master/locales/sv.yml
+# The form fields are in simple_form.sv.yml
+
 sv:
   devise:
     confirmations:
+      new:
+        resend_confirmation_instructions: Skicka om instruktionerna för att bekräfta ditt konto
+        send: Skicka
       confirmed: Ditt konto har bekräftats. Du är nu inloggad.
       send_instructions: Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.
       send_paranoid_instructions: Om din epostadress finns i vår databas, kommer du att få ett epost-meddelande inom några minuter med instruktioner om hur du ska göra för att aktivera ditt konto igen.
@@ -18,6 +23,10 @@ sv:
     mailer:
       confirmation_instructions:
         subject: Instruktioner för bekräftning av konto
+        welcome: "Välkommen %{email}"
+        you_can_confirm_your_account: Du kan bekräfta din epost med länken nedanför
+        confirm_my_account: bekräfta mitt konto
+        thanks: Tack!
       reset_password_instructions:
         subject: Instruktioner för återställning av lösenord
       unlock_instructions:
@@ -31,6 +40,14 @@ sv:
       send_paranoid_instructions: Om din epostadress finns i vår databas kommer du att få en lösenordslänk skickad till din epost.
       updated: Ditt lösenord har uppdaterats. Du är nu inloggad.
       updated_not_active: Ditt lösenord uppdaterades.
+      new:
+        forgot_your_password: Glömt lösenordet?
+        send_me_reset_password_instructions: Skicka mig instruktioner för att återställa lösenordet
+      edit:
+        change_your_password: Byt lösenord
+        new_password: Nytt lösenord
+        confirm_new_password: Upprepa det nya lösenordet
+        change_my_password: Byt mitt lösenord
     registrations:
       destroyed: Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.
       signed_up: Välkommen! Ditt nya konto har skapats.
@@ -39,14 +56,36 @@ sv:
       signed_up_but_unconfirmed: Ett meddelande med en länk för att bekräfta din registrering har skickats till din epostadress. Följ länken för att aktivera ditt konto.
       update_needs_confirmation: Ditt konto uppdaterades, men vi behöver verifiera din nya epostadress. Kontrollera din epost och klicka på länken för att bekräfta din nya epostadress.
       updated: Ditt konto har uppdaterats.
+      edit:
+        edit_account: Ändra uppgifter
+        edit: Ändra
+        currently_awaiting_confirmation: "Vi väntar på bekräftelse ifrån %{email}"
+        cancel_my_account: Ta bort mitt konto
+        update: Spara
+        are_you_sure: Är du helt säker?
+        unhappy: Missnöjd?
+        we_need_password_to_confirm: vi behöver ditt nuvarande lösenord för att bekräfta ändringarna
+      new:
+        sign_up: Registrera dig
     sessions:
       already_signed_out:
       signed_in: Loggade in.
       signed_out: Loggade ut.
+      new:
+        sign_in: 'Logga in'
+        remember_me: 'Kom ihåg mig'
     unlocks:
       send_instructions: Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.
       send_paranoid_instructions: Om ditt konto finns, kommer du att få ett email med instruktioner om hur du låser upp det inom några minuter.
       unlocked: Ditt konto har låsts upp. Du är nu inloggad.
+    shared:
+      links:
+        forgot_your_password: Har din hund ätit upp lösenordet?
+        did_not_receive_confirm_instructions: Har du inte fått bekräftelsemailet?
+        did_not_receive_unlock_instructions: Har du inte fått instructioner för att låsa upp ditt konto??
+        sign_in_with: Logga in med
+        sign_in: Logga in
+        sign_up: Registrera dig
   errors:
     messages:
       already_confirmed: är redan bekräftad, vänligen logga in igen
