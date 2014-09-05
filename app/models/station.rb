@@ -64,8 +64,7 @@ class Station
     end
   end
 
-  # Inverse of online?
-  # Why? Readability...
+  # @return [Boolean]
   def offline?
     !online?
   end
@@ -92,7 +91,7 @@ class Station
     !should_be_offline?
   end
 
-  # Check station status and send notifications if it is unresponsive or has a low balance
+  # Check station status and send messages if it is unresponsive or has a low balance
   #   @return [Mongoid::Relations] any events created
   def check_status!
     events

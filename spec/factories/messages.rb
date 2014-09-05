@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :notification do
+  factory :message do
     level :warning
-    message "Hello World!"
+    subject "Happy Birthday"
+    body "Hello World!"
   end
 end

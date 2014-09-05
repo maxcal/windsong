@@ -17,6 +17,7 @@ class Event
   field :notified, type: Boolean
   # @!attribute
   #   @return [Mongoid::Relations]
-  has_many :notifications
+  has_many :messages
   attr_readonly :key, :meta
+
 end

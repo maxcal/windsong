@@ -15,7 +15,7 @@ describe Station::Event do
     it "creates a notification" do
       expect(event.can_notify?).to be_true
 
-      expect { event.notify }.to change( event.notifications, :count ).by(+1)
+      expect { event.notify }.to change( event.messages, :count ).by(+1)
     end
 
     it "notifies owners" do
@@ -24,12 +24,12 @@ describe Station::Event do
 
     it "has the correct message" do
       event.key = :online
-      expect( event.notify.last.message ).to eq('Test Station is online')
+      expect( event.notify.last.body ).to eq('Test Station is online')
     end
 
     it "only allows notify once" do
       event.notify
-      expect { event.notify }.to_not change( event.notifications, :count )
+      expect { event.notify }.to_not change( event.messages, :count )
       expect { event.nofied? }.to be_true
     end
   end
@@ -42,8 +42,8 @@ describe Station::Event do
       let!(:old_event) do
         e = create(:station_event, key: :low_balance, station: station, notified: true)
       end
-      it "should not allow new notifications" do
-        expect { event.notify }.to_not change( event.notifications, :count )
+      it "should not allow new messages" do
+        expect { event.notify }.to_not change( event.messages, :count )
       end
     end
 
@@ -53,8 +53,8 @@ describe Station::Event do
         e.update_attribute(:created_at, 2.years.ago)
         e
       end
-      it "should allow new notifications" do
-        expect { event.notify }.to change( event.notifications, :count ).by(+1)
+      it "should allow new messages" do
+        expect { event.notify }.to change( event.messages, :count ).by(+1)
       end
     end
   end

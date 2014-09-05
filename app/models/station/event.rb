@@ -1,5 +1,5 @@
 # Station events should mark when stations go up / down, change ownership etc.
-# They also notify station owners and throttle notifications.
+# They also notify station owners and throttle messages.
 class Station::Event < ::Event
   belongs_to :station
   scope :since, ->(time_ago){ where(:created_at.gte => time_ago) }
@@ -8,17 +8,17 @@ class Station::Event < ::Event
   @@PRESETS = {
       online: {
           level: :info,
-          message: "%{name} is online",
+          body: "%{name} is online",
       },
       offline: {
           level: :warning,
-          message: "%{name} is offline",
+          body: "%{name} is offline",
           #cooldown: 1.day
 
       },
       low_balance: {
           level: :warning,
-          message: "%{name} has a low balance",
+          body: "%{name} has a low balance",
           cooldown: 3.hours # wait this long before notifying user of this event again
       }
   }
@@ -29,7 +29,7 @@ class Station::Event < ::Event
     doc.event_type = @@PRESETS[key]
   end
 
-  # Test if this event can send notifications
+  # Test if this event can send messages
   # @return [Boolean]
   def can_notify?
     if notified?
@@ -50,14 +50,14 @@ class Station::Event < ::Event
     if (can_notify?)
       update_attribute(:notified, true)
       station.owners.all.map do |owner|
-        note = notifications.create(
+        message = messages.create(
             level: event_type[:level],
             recipient: owner,
-            message: event_type[:message] % station.attributes.symbolize_keys,
+            body: event_type[:body] % station.attributes.symbolize_keys,
             mailer: StationMailer
         )
-        note.send_mail!
-        note
+        message.send_mail!
+        message
       end
     end
   end

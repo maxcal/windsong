@@ -1,4 +1,4 @@
-# The notification class is used for both throttling email notifications and creating in-app notifications
+# The notification class is used for both throttling email messages and creating in-app messages
 class Message
   include Mongoid::Document
   # 8 log levels according to RFC 5424 (http://tools.ietf.org/html/rfc5424)
@@ -16,9 +16,6 @@ class Message
   # @!attribute key
   #   @return [Symbol]
   field :key, type: Symbol
-  # @!attibute meta
-  #   @return [Object]
-  field :meta
   # @!attribute level
   #   @return [Symbol]
   #   @see LEVELS_RFC_5424
@@ -26,7 +23,10 @@ class Message
   field :level, type: Symbol, default: :info
   # @!attribute message
   #   @return [String]
-  field :message, type: String
+  field :body, type: String
+  # @!attribute subject
+  #   @return [String]
+  field :subject, type: String
   # @!attribute read
   #   @return [Boolean] defaults to false
   field :read, type: Boolean, default: false

@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Message do
 
   it { should respond_to :event }
-  it { should respond_to :message }
+  it { should respond_to :subject }
+  it { should respond_to :body }
   it { should respond_to :read }
   it { should respond_to :level }
 
@@ -23,13 +24,16 @@ describe Message do
 
   describe "send_mail!!" do
 
-    let(:note) {
-      create(:notification, mailer: double("ActionMailer::Base"), recipient: build_stubbed(:user), event: build_stubbed(:event, key: :foo))
-    }
+    let(:message) do
+      create(:message,
+             mailer: double("ActionMailer::Base"),
+             recipient: build_stubbed(:user),
+             event: build_stubbed(:event, key: :foo))
+    end
 
     it "should send mail" do
-      note.mailer.should_receive(:foo)
-      note.send_mail!
+      message.mailer.should_receive(:foo)
+      message.send_mail!
     end
 
   end
