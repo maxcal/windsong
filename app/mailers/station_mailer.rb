@@ -46,10 +46,12 @@ class StationMailer < ActionMailer::Base
     deliver_and_log("low_balance", message)
   end
 
+  private
+
   # @param station Station
   # @param options Hash
   # @return Mail::Message | nil returns nil if mail could not be created
-  private def deliver_and_log(meth, message)
+  def deliver_and_log(meth, message)
     if message
       unless message.deliver
         Rails.logger.error("StationMailer.#{meth}: Mail could not be delivered")
