@@ -8,7 +8,10 @@ All commands in this readme should be run from project root unless otherwise spe
 ## Requirements
 
 * Ruby 2.1.1
-* [Mongodb](http://www.mongodb.org/) 2.4.9
+* [Mongodb](http://www.mongodb.org/) > 2.4.9
+
+## Recommended
+* [RVM](http://rvm.io)
 
 ## Installing
 See Mongodb documentation for installation instructions.
@@ -25,12 +28,11 @@ Then point a web browser at [Your local YARD documentation](http://localhost:808
 source changes.
 
 ## Testing
-This app uses [RSpec](http://rspec.info/)
+This app uses [RSpec](http://rspec.info/). "Expect" syntax only please!
 
-### Continuous
+### Continuous testing
 This app can be continuously tested with Guard
 $ `guard`
-
 
 ## Deployment
 This app is aimed at the excellent [Heroku](http://www.heroku.com) cloud SAAS platform.
