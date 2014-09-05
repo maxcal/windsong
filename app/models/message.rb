@@ -1,5 +1,5 @@
 # The notification class is used for both throttling email notifications and creating in-app notifications
-class Notification
+class Message
   include Mongoid::Document
   # 8 log levels according to RFC 5424 (http://tools.ietf.org/html/rfc5424)
   # Used for thresholding

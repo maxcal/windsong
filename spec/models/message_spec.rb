@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Notification do
+describe Message do
 
   it { should respond_to :event }
   it { should respond_to :message }
